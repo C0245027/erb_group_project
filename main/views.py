@@ -48,8 +48,7 @@ def application(request):
         email_message = f'姓名: {name}\n電子郵件: {email}\n電話號碼: {phone}\n留言:\n{application_message}\n\n\n您的請求已提交,請耐心等待,我們的工作人員將儘快與您聯繫'
         # List of recipient emails
         recipient_list = [email]  # Add your email addresses here
-
-
+ 
         try: 
             # Send the email
             send_mail(subject, email_message, settings.DEFAULT_FROM_EMAIL, recipient_list)
