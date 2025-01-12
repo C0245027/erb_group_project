@@ -55,7 +55,7 @@ def application(request):
         application_message = request.POST['application_message']
 
         # Construct the email content
-        subject = '預約參觀'
+        subject = '養心園安老院舍 - 預約參觀'
         email_message = f'姓名: {name}\n電子郵件: {email}\n電話號碼: {phone}\n留言:\n{application_message}\n\n\n您的請求已提交,請耐心等待,我們的工作人員將儘快與您聯繫'
         # List of recipient emails
         recipient_list = [email]  # Add your email addresses here
@@ -63,7 +63,7 @@ def application(request):
         try: 
             # Send the email
             send_mail(subject, email_message, settings.DEFAULT_FROM_EMAIL, recipient_list)
-            messages.success(request, '"您的請求已提交，請耐心等待，我們的工作人員將儘快與您聯繫。')
+            messages.success(request, '您的請求已提交，請耐心等待，我們的工作人員將儘快與您聯繫。')
         except Exception as e:
             print('Error sending email:', e)
             messages.error(request, f'Error sending email: {e}')

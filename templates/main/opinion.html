@@ -8,11 +8,11 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="card shadow-sm">
-                    <div class="card-header bg-primary text-white">
+                    <div class="card-header" style="background-color: #ca8c30; color: white;">
                         <h4 class="mb-0">客戶意見</h4>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{% url 'opinion' %}" class="needs-validation" novalidate>
+                        <form method="post" action="{% url 'opinion' %}" class="needs-validation" novalidate onsubmit="return checkSelectedValue()">
                             {% csrf_token %}
                             
                             <div class="row mb-4">
@@ -65,6 +65,7 @@
                                         <label for="checkout" class="form-label">退房時間 *</label>
                                         <input type="date" class="form-control" id="checkout" name="checkout" required>
                                         <div class="invalid-feedback">請輸入退房時間</div>
+                                        <div id="message_checkdate" class="alert alert-info" style="display: none;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -78,6 +79,7 @@
                                     <div class="col-md-4">
                                         
                                         <label for="accommodation" class="form-label">住宿環境</label>
+                                        
                                         <select class="form-select" id="accommodation" name="accommodation" required>
                                             <option value="">請評分</option>
                                             <option value="非常滿意">非常滿意</option>
@@ -85,8 +87,8 @@
                                             <option value="一般">一般</option>
                                             <option value="不滿意">不滿意</option>
                                             <option value="非常不滿意">非常不滿意</option>                                            
-                                        </select>
-                                        <div class="invalid-feedback">請選擇評分</div>
+                                        </select> 
+                                        <div id="message_accommodation" class="alert alert-info" style="display: none;"></div>
                                        
                                         
                                     </div>
@@ -100,7 +102,8 @@
                                             <option value="不滿意">不滿意</option>
                                             <option value="非常不滿意">非常不滿意</option>
                                         </select>
-                                        <div class="invalid-feedback">請選擇評分</div>
+                                        <div id="message_dinning" class="alert alert-info" style="display: none;"></div>
+                                       
                                     </div>
                                     <div class="col-md-4">
                                         <label for="staff" class="form-label">員工服務</label>
@@ -112,7 +115,8 @@
                                             <option value="不滿意">不滿意</option>
                                             <option value="非常不滿意">非常不滿意</option>
                                         </select>
-                                        <div class="invalid-feedback">請選擇評分</div>
+                                        <div id="message_staff" class="alert alert-info" style="display: none;"></div>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -132,10 +136,87 @@
             </div>
         </div>
     </div>
-
-
-
+ 
+ 
     <script>
+    
+
+    function checkSelectedValue() {
+
+
+
+        //check accommodation
+        var selectElement = document.getElementById("accommodation");
+        var selectedValue = selectElement.value;
+        var messageDiv = document.getElementById("message_accommodation");
+
+ 
+        messageDiv.style.display = "none"; // Hide the message initially
+
+ 
+        if (selectedValue === "") {
+            messageDiv.textContent = "請選擇服務評分"; // Set the message
+            messageDiv.style.display = "block"; // Show the message
+            messageDiv.className = "alert alert-danger"; // Set the class for error message 
+            return false; // Prevent form submission
+        }  
+
+        //check dinning
+
+        var selectElement = document.getElementById("dinning");
+        var selectedValue = selectElement.value;
+        var messageDiv = document.getElementById("message_dinning");
+ 
+        messageDiv.style.display = "none"; // Hide the message initially
+
+ 
+        if (selectedValue === "") {
+            messageDiv.textContent = "請選擇服務評分"; // Set the message
+            messageDiv.style.display = "block"; // Show the message
+            messageDiv.className = "alert alert-danger"; // Set the class for error message 
+            return false; // Prevent form submission
+        }  
+ 
+        //check staff
+
+        var selectElement = document.getElementById("staff");
+        var selectedValue = selectElement.value;
+        var messageDiv = document.getElementById("message_staff");
+ 
+        messageDiv.style.display = "none"; // Hide the message initially
+
+ 
+        if (selectedValue === "") {
+            messageDiv.textContent = "請選擇服務評分"; // Set the message
+            messageDiv.style.display = "block"; // Show the message
+            messageDiv.className = "alert alert-danger"; // Set the class for error message 
+            return false; // Prevent form submission
+        }  
+
+ 
+
+        // Check if checkout is earlier than checkin
+        var checkinDate = new Date(document.getElementById("checkin").value);
+        var checkoutDate = new Date(document.getElementById("checkout").value);
+
+        var messageDiv = document.getElementById("message_checkdate");
+ 
+
+        if (checkoutDate < checkinDate) {
+            messageDiv.textContent = "退房時間不能早於入住時間"; // Set the message
+            messageDiv.style.display = "block"; // Show the message
+            messageDiv.className = "alert alert-danger"; // Set the class for error message 
+            return false; // Prevent form submission
+        }
+
+
+
+    }
+
+
+ 
+ 
+    
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function () {
             'use strict'
@@ -147,15 +228,34 @@
             Array.prototype.slice.call(forms)
                 .forEach(function (form) {
                     form.addEventListener('submit', function (event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
+                        var isValid = true;
+                        
+                        // Check if required select elements are empty
+                        var requiredSelects = form.querySelectorAll('select[required]');
+                     
+                        requiredSelects.forEach(function (select) {
+                         console.log("Checking select:", select); // Log the select element
+                         
+                            if (select.value === "") {
+                                alert("請選擇服務評分");
+                                isValid = false;
+                                select.classList.add('is-invalid'); // Add Bootstrap invalid class
+                            } else {
+                             alert("hi2");
+                                select.classList.remove('is-invalid'); // Remove invalid class if valid
+                            }
+                        });
+    
+                        // If the form is not valid, prevent submission
+                        if (!form.checkValidity() || !isValid) {
+                            event.preventDefault();
+                            event.stopPropagation();
                         }
     
                         // Add the 'was-validated' class regardless of validity
-                        form.classList.add('was-validated')
-                    }, false)
-                })
+                        form.classList.add('was-validated');
+                    }, false);
+                });
         })()
     </script>
 
