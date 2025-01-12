@@ -36,6 +36,17 @@ def services(request):
 def movein(request):
     return render(request,'main/movein.html')
 
+def facilities(request):
+    return render(request,'main/facilities.html')
+
+
+def qualification(request):
+    return render(request,'main/qualification.html')
+
+                        
+def map(request):
+    return render(request,'main/map.html')
+
 def application(request):
     if request.method == 'POST':
         name = request.POST['name']
@@ -70,19 +81,17 @@ def opinion(request):
             name = request.POST.get('name')
             age = request.POST.get('age')
             gender = request.POST.get('gender')
-            contact = request.POST.get('contact')
-            email = request.POST.get('email')
-            stayduration = request.POST.get('stayduration')
+            contact = request.POST.get('contact')   
+            checkin = request.POST.get('checkin')
+            checkout = request.POST.get('checkout')
             accommodation = request.POST.get('accommodation')
             dinning = request.POST.get('dinning')
-            safety = request.POST.get('safety')
-            staff = request.POST.get('staff')
-            overallsatisfaction = request.POST.get('overallsatisfaction')
+            staff = request.POST.get('staff') 
             suggestions = request.POST.get('suggestion')
 
             # Validate required fields
-            required_fields = [name, age, gender, contact, email, stayduration, 
-                             accommodation, dinning, safety, staff, overallsatisfaction]
+            required_fields = [contact, checkin, checkout, 
+                             accommodation, dinning, staff]
             
             if not all(required_fields):
                 messages.error(request, '請填寫所有必需欄位。')
@@ -95,26 +104,26 @@ def opinion(request):
 姓名: {name}
 年齡: {age}
 性別: {gender}
-聯絡方式: {contact}
-電子郵件: {email}
-預計入住日期: {stayduration}
-
+電子郵件: {contact}
+入住時間: {checkin}
+退房時間: {checkout}
 服務評分：
 住宿滿意度: {accommodation}
 餐飲滿意度: {dinning}
-安全滿意度: {safety}
-員工滿意度: {staff}
-總體滿意度: {overallsatisfaction}
+員工滿意度: {staff} 
 
 其他意見：
 {suggestions if suggestions else "無"}
 '''
+            
+            email_message=email_message+'\n\n\n 感謝你的意見!!'
+
             # Send email
             send_mail(
                 subject,
                 email_message,
                 settings.DEFAULT_FROM_EMAIL,
-                [settings.DEFAULT_FROM_EMAIL, email],
+                [settings.DEFAULT_FROM_EMAIL, contact],
                 fail_silently=False
             )
 
@@ -165,6 +174,10 @@ def booking(request):
             預計入住日期: {stayDuration}
                         '''
 
+
+
+            email_message=email_message+'\n\n\n 您的預約申請已提交，我們會盡快與您聯絡。'
+
             send_mail(
                 subject,
                 email_message,
@@ -181,3 +194,10 @@ def booking(request):
             return redirect('booking')
 
     return render(request, 'main/booking.html')
+
+
+
+def meal(request): 
+    weeks = ['一', '二', '三', '四'] # Create a range of weeks
+    return render(request, 'main/meal.html', {'weeks': weeks})
+

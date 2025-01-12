@@ -1,12 +1,8 @@
 {% load static %}
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary sticky-top">
     <div class="container">
-        <!-- Floating Button -->
-        <a href="{% url 'application' %}" class="floating-btn">
-            <i class="fas fa-envelope"></i>
-            <span class="floating-btn-text">預約參觀</span>
-        </a>
-
+        
         <a class="navbar-brand" href="{% url 'index' %}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" 
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,35 +11,34 @@
         
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item {% if request.path == '/' %}active{% endif %} highlight">
+                <li class="nav-item {% if request.path == '/' %}active highlight{% endif %} ">
                     <a class="nav-link" href="{% url 'index' %}">主頁</a>
                 </li>
-                <li class="nav-item {% if 'staffs' in request.path %}active{% endif %} highlight">
+                <li class="nav-item {% if 'staffs' in request.path %}active highlight{% endif %} ">
                     <a class="nav-link" href="{% url 'staffs' %}">員工簡介</a>
                 </li>
-                <li class="nav-item {% if 'index' in request.path %}active{% endif %} highlight">
-                    <a class="nav-link" href="{% url 'index' %}">入住條件</a>
+                <li class="nav-item {% if 'qualification' in request.path %}active highlight{% endif %} ">
+                    <a class="nav-link" href="{% url 'qualification' %}">入住條件</a>
                 </li>
-                <li class="nav-item {% if 'finapply' in request.path %}active{% endif %} highlight">
+                <li class="nav-item {% if 'finapply' in request.path %}active highlight{% endif %} ">
                     <a class="nav-link" href="{% url 'finapply' %}">申請資助</a>
                 </li>
-                <li class="nav-item dropdown {% if request.path|slice:":8" in '/services,/meal,/fee,/qa,/opinion' %}active{% endif %} highlight">
+                <li class="nav-item dropdown {% if 'meal' in request.path or 'fee' in request.path or 'qa' in request.path or 'opinion' in request.path or 'movein' in request.path or 'services' in request.path %} active highlight{% endif %} ">
                     <a class="nav-link dropdown-toggle" href="#" id="servicedropdown" role="button" 
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         服務
                     </a>
                     <div class="dropdown-menu" aria-labelledby="servicedropdown">
                         <a class="dropdown-item" href="{% url 'services' %}">服務範圍</a>
-                        <a class="dropdown-item" href="#">服務流程</a>
+                        <a class="dropdown-item" href="{% url 'movein' %}"">入住流程</a>
                         <a class="dropdown-item" href="{% url 'meal' %}">營養餐單</a>
-                        <a class="dropdown-item" href="#">護理服務</a>
                         <a class="dropdown-item" href="{% url 'fee' %}">項目收費</a>
                         <a class="dropdown-item" href="{% url 'qa' %}">常見問題</a>
                         <a class="dropdown-item" href="{% url 'opinion' %}">客戶意見</a>
                     </div>
                 </li>
                 {% comment %} fix later{% endcomment %}
-                <li class="nav-item dropdown {% if 'index' in request.path %}active{% endif %} highlight">
+                <li class="nav-item dropdown {% if 'application' in request.path or 'booking' in request.path %} active highlight{% endif %} ">
                     <a class="nav-link dropdown-toggle" href="#" id="bookingdropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         預約
                     </a>
@@ -53,15 +48,15 @@
                     </div>
                 </li>
                 {% comment %} fix later {% endcomment %}
-                <li class="nav-item {% if 'index' in request.path %}active{% endif %} highlight">
-                    <a class="nav-link" href="{% url 'index' %}">院舍生活設施</a>
+                <li class="nav-item {% if 'facilities' in request.path %}active highlight {% endif %} ">
+                    <a class="nav-link" href="{% url 'facilities' %}">院舍生活設施</a>
                 </li>
                 {% comment %} fix later {% endcomment %}
-                <li class="nav-item {% if 'index' in request.path %}active{% endif %} highlight">
-                    <a class="nav-link" href="{% url 'index' %}">地點資訊</a>
+                <li class="nav-item {% if 'map' in request.path %}active highlight {% endif %} ">
+                    <a class="nav-link" href="{% url 'map' %}">地點資訊</a>
                 </li>
                 {% comment %} fix later {% endcomment %}
-                <li class="nav-item {% if 'index' in request.path %}active{% endif %} highlight">
+                <li class="nav-item {% if 'about' in request.path %}active highlight {% endif %} ">
                     <a class="nav-link" href="{% url 'about' %}">關於我們</a>
                 </li>
             </ul>

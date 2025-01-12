@@ -7,6 +7,8 @@
 <div class="container mt-5">
     <h1 class="display-4 text-center mb-4">營養餐單</h1>
     
+    {% for week in weeks %}
+    <h2 class="text-left">第 {{ week }} 週</h2>
     <table class="table table-bordered table-hover">
         <thead class="thead-light">
             <tr>
@@ -19,49 +21,49 @@
         </thead>
         <tbody>
             <tr>
-                <td>周一</td>
+                <td>星期一</td>
                 <td>燕麥粥，水果</td>
                 <td>蒸魚，青菜，米飯</td>
                 <td>牛奶，餅乾</td>
                 <td>雞肉湯，麵條</td>
             </tr>
             <tr>
-                <td>周二</td>
+                <td>星期二</td>
                 <td>豆漿，包子</td>
                 <td>紅燒肉，土豆，米飯</td>
                 <td>水果沙拉</td>
                 <td>清蒸蝦，蔬菜</td>
             </tr>
             <tr>
-                <td>周三</td>
+                <td>星期三</td>
                 <td>雞蛋，吐司</td>
                 <td>牛肉炒青菜，米飯</td>
                 <td>酸奶，堅果</td>
                 <td>豆腐湯，米飯</td>
             </tr>
             <tr>
-                <td>周四</td>
+                <td>星期四</td>
                 <td>牛奶，饅頭</td>
                 <td>清蒸魚，米飯</td>
                 <td>茶，蛋糕</td>
                 <td>魚湯，蔬菜</td>
             </tr>
             <tr>
-                <td>周五</td>
+                <td>星期五</td>
                 <td>水果燕麥</td>
                 <td>排骨湯，米飯</td>
                 <td>牛奶，水果</td>
                 <td>炒麵，青菜</td>
             </tr>
             <tr>
-                <td>周六</td>
+                <td>星期六</td>
                 <td>豆腐腦，油條</td>
                 <td>蒸雞，米飯，蔬菜</td>
                 <td>餅乾，果汁</td>
                 <td>牛肉湯，米飯</td>
             </tr>
             <tr>
-                <td>周日</td>
+                <td>星期日</td>
                 <td>粥，水果</td>
                 <td>魚香肉絲，米飯</td>
                 <td>茶，蛋糕</td>
@@ -69,5 +71,13 @@
             </tr>
         </tbody>
     </table>
+    {% endfor %}
 </div>
+
+<style>
+    .table tbody tr:nth-child(odd) {
+        background-color: #FFA07A; /* Light orange color */
+    }
+</style>
+
 {% endblock %}

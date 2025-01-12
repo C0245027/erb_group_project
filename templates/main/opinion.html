@@ -1,143 +1,163 @@
-{% extends "base.html" %}
-{% load static %}
+    {% extends "base.html" %}
+    {% load static %}
 
-{% block title %} | 客戶意見 {% endblock %}
+    {% block title %} | 客戶意見 {% endblock %}
 
-{% block content %}
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">客戶意見調查表</h4>
-                </div>
-                <div class="card-body">
-                    <form method="post" action="{% url 'opinion' %}" class="needs-validation" novalidate>
-                        {% csrf_token %}
-                        
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name" class="form-label">姓名 *</label>
-                                    <input type="text" class="form-control" id="name" name="name" required>
-                                    <div class="invalid-feedback">請輸入姓名</div>
+    {% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">客戶意見</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="{% url 'opinion' %}" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name" class="form-label">姓名</label>
+                                        <input type="text" class="form-control" id="name" name="name">
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="age" class="form-label">年齡</label>
+                                        <input type="number" class="form-control" id="age" name="age">
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="gender" class="form-label">性別</label>
+                                        <select class="form-select" id="gender" name="gender">
+                                            <option value="">請選擇</option>
+                                            <option value="男">男</option>
+                                            <option value="女">女</option>
+                                        </select>
+                                        
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="age" class="form-label">年齡 *</label>
-                                    <input type="number" class="form-control" id="age" name="age" required>
-                                    <div class="invalid-feedback">請輸入年齡</div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="gender" class="form-label">性別 *</label>
-                                    <select class="form-select" id="gender" name="gender" required>
-                                        <option value="">請選擇</option>
-                                        <option value="male">男</option>
-                                        <option value="female">女</option>
-                                    </select>
-                                    <div class="invalid-feedback">請選擇性別</div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="contact" class="form-label">電子郵件 *</label>
-                                    <input type="email" class="form-control" id="contact" name="contact" required>
-                                    <div class="invalid-feedback">請輸入有效的電子郵件地址</div>
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="contact" class="form-label">電子郵件 *</label>
+                                        <input type="email" class="form-control" id="contact" name="contact" required>
+                                        <div class="invalid-feedback">請輸入有效的電子郵件地址</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="checkin" class="form-label">入住時間 *</label>
+                                        <input type="date" class="form-control" id="checkin" name="checkin" required>
+                                        <div class="invalid-feedback">請輸入入住時間</div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="stayduration" class="form-label">入住時間 *</label>
-                                    <input type="text" class="form-control" id="stayduration" name="stayduration" required>
-                                    <div class="invalid-feedback">請輸入入住時間</div>
+                            <div class="row mb-4">
+                                <div class="col-md-6 offset-md-6"> <!-- This will shift the column to the right -->
+                                    <div class="form-group">
+                                        <label for="checkout" class="form-label">退房時間 *</label>
+                                        <input type="date" class="form-control" id="checkout" name="checkout" required>
+                                        <div class="invalid-feedback">請輸入退房時間</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            
+                            
+                            </div>
 
-                        <div class="mb-4">
-                            <label class="form-label">服務評分 *</label>
-                            <div class="row g-3">
-                                <div class="col-md-4">
-                                    <label for="accommodation" class="form-label">住宿環境</label>
-                                    <select class="form-select" id="accommodation" name="accommodation" required>
-                                        <option value="">請評分</option>
-                                        <option value="5">非常滿意</option>
-                                        <option value="4">滿意</option>
-                                        <option value="3">一般</option>
-                                        <option value="2">不滿意</option>
-                                        <option value="1">非常不滿意</option>
-                                    </select>
-                                    <div class="invalid-feedback">請選擇評分</div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="dinning" class="form-label">膳食服務</label>
-                                    <select class="form-select" id="dinning" name="dinning" required>
-                                        <option value="">請評分</option>
-                                        <option value="5">非常滿意</option>
-                                        <option value="4">滿意</option>
-                                        <option value="3">一般</option>
-                                        <option value="2">不滿意</option>
-                                        <option value="1">非常不滿意</option>
-                                    </select>
-                                    <div class="invalid-feedback">請選擇評分</div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="staff" class="form-label">員工服務</label>
-                                    <select class="form-select" id="staff" name="staff" required>
-                                        <option value="">請評分</option>
-                                        <option value="5">非常滿意</option>
-                                        <option value="4">滿意</option>
-                                        <option value="3">一般</option>
-                                        <option value="2">不滿意</option>
-                                        <option value="1">非常不滿意</option>
-                                    </select>
-                                    <div class="invalid-feedback">請選擇評分</div>
+                            <div class="mb-4">
+                                <label class="form-label">服務評分 *</label>
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        
+                                        <label for="accommodation" class="form-label">住宿環境</label>
+                                        <select class="form-select" id="accommodation" name="accommodation" required>
+                                            <option value="">請評分</option>
+                                            <option value="非常滿意">非常滿意</option>
+                                            <option value="滿意">滿意</option>
+                                            <option value="一般">一般</option>
+                                            <option value="不滿意">不滿意</option>
+                                            <option value="非常不滿意">非常不滿意</option>                                            
+                                        </select>
+                                        <div class="invalid-feedback">請選擇評分</div>
+                                       
+                                        
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="dinning" class="form-label">膳食服務</label>
+                                        <select class="form-select" id="dinning" name="dinning" required>
+                                            <option value="">請評分</option>
+                                            <option value="非常滿意">非常滿意</option>
+                                            <option value="滿意">滿意</option>
+                                            <option value="一般">一般</option>
+                                            <option value="不滿意">不滿意</option>
+                                            <option value="非常不滿意">非常不滿意</option>
+                                        </select>
+                                        <div class="invalid-feedback">請選擇評分</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="staff" class="form-label">員工服務</label>
+                                        <select class="form-select" id="staff" name="staff" required>
+                                            <option value="">請評分</option>
+                                            <option value="非常滿意">非常滿意</option>
+                                            <option value="滿意">滿意</option>
+                                            <option value="一般">一般</option>
+                                            <option value="不滿意">不滿意</option>
+                                            <option value="非常不滿意">非常不滿意</option>
+                                        </select>
+                                        <div class="invalid-feedback">請選擇評分</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="form-group mb-4">
-                            <label for="suggestion" class="form-label">其他意見 *</label>
-                            <textarea class="form-control" id="suggestion" name="suggestion" rows="4" required></textarea>
-                            <div class="invalid-feedback">請輸入意見</div>
-                        </div>
+                            <div class="form-group mb-4">
+                                <label for="suggestion" class="form-label">其他意見</label>
+                                <textarea class="form-control" id="suggestion" name="suggestion" rows="4"></textarea>
+                                
+                            </div>
 
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-lg px-5">提交意見</button>
-                        </div>
-                    </form>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-secondary btn-lg px-5">提交意見</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
-  'use strict'
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation')
 
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict'
+    
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+    
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+    
+                        // Add the 'was-validated' class regardless of validity
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
 
-        form.classList.add('was-validated')
-      }, false)
-    })
-})()
-</script>
-{% endblock %}
+    
+    {% endblock %}

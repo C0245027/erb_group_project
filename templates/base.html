@@ -17,8 +17,22 @@
     {% include 'partials/_topbar.html' %}
     {% include 'partials/_navbar.html' %}
     {% include 'partials/_alert.html' %}
+
+        <!-- Floating Button -->
+
+        {% if 'application' not in request.path and 'booking' not in request.path %}
+
+            <a href="{% url 'application' %}" class="floating-btn">
+                <i class="fas fa-envelope"></i>
+                <span class="floating-btn-text">預約參觀</span>
+            </a>
+
+        {% endif %}
+
     {% block content %} {% endblock %}
     {% include 'partials/_footer.html' %}
+
+
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>

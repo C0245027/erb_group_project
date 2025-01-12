@@ -4,8 +4,9 @@
 }
  
 
-.nav-item.highlight .nav-link {
-  background-color: #30caa0 ; /* Change background color to orange */
+
+.nav-item.active .nav-item.highlight .nav-link {
+  background-color: #3a30ca ; /* Change background color */
   color: white; /* Optional: Change text color for better contrast */
 }
 
@@ -99,21 +100,24 @@
   100% { opacity: 1; }
 }
 
+ 
+ 
+/* Floating Button Styles */
 .floating-btn {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  padding: 15px 25px;
-  background-color: #30caa0;
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  color: white;
-  text-decoration: none;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-  z-index: 1000;
-  animation: blink 2s ease-in-out infinite;
+    position: fixed; /* Fixes the button in place */
+    right: 20px;     /* Distance from the right edge of the viewport */
+    top: 80%;        /* Center vertically */
+    transform: translateY(-50%); /* Adjusts the position to truly center it */
+     
+    background-color: #ca306b; /* Ensure this is visible */
+    color: #fff; /* Optional: Set text color */
+    padding: 10px 15px; /* Optional: Add some padding */
+    border-radius: 5px; /* Optional: Round the corners */
+    text-decoration: none; /* Remove underline from link */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
+    z-index: 1000; /* Ensure it appears above other elements */
 }
+
 
 .floating-btn:hover {
   animation: none;
@@ -132,14 +136,15 @@
 
 .faq h2 {
   font-size: 0.95rem !important;
-  color: #333;
+  color: #b99930;
   margin-bottom: 10px;
   font-weight: 600;
 }
 
 .faq p {
   font-size: 0.85rem !important;
-  color: #666;
+  color: #666666;
   line-height: 1.6;
   margin-bottom: 0;
 }
+ 

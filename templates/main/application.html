@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %} | Booking {% endblock %}
+{% block title %} | application {% endblock %}
 {% block content %}
 
 
@@ -9,31 +9,28 @@
 </div>
     
 <div class="container mt-3" style="margin-left: 10px;">
-    
-    <p></p>
-    <br>
-    <p class="mb-5">請填寫以下資料，我們會盡快與您聯絡。</p>
-    
-    
+  
+    <p class="mb-3">請填寫以下資料，我們會盡快與您聯絡。</p>
+     
     <form method="post" action="{% url 'application' %}">
         {% csrf_token %}
         <div class="form-group">
-            <label for="name">姓名</label>
+            <label for="name">姓名 *</label>
             <input type="text" class="form-control" id="name" name="name" required>
         </div>
         <div class="form-group">
-            <label for="email">電子郵件</label>
+            <label for="email">電子郵件 *</label>
             <input type="email" class="form-control" id="email" name="email" required>
         </div>
         <div class="form-group">
-            <label for="phone">電話號碼</label>
+            <label for="phone">電話號碼 *</label>
             <input type="text" class="form-control" id="phone" name="phone" required>
         </div>
         <div class="form-group">
-            <label for="application_message">留言</label>
-            <textarea class="form-control" id="application_message" name="application_message" rows="4" required></textarea>
+            <label for="application_message">留言 *</label>
+            <textarea class="form-control" id="application_message" name="application_message" rows="4" required>我希望能夠安排一次參觀養心園安老院舍。請提供可用的日期和時間。謝謝 !</textarea>
         </div>
-        <button type="submit" class="btn btn-secondary">提交預約</button>
+        <button type="submit" class="btn btn-secondary btn-lg">提交預約</button>
     </form>
 </div>
 

@@ -1,17 +1,22 @@
-
-.custom-navbar {
-  background-color: #30caa0 !important;  
-}
  
+.custom-navbar {
+    background-color: #30caa0 !important;  
+    color: #d11654 !important; /* This will apply to the navbar itself */
+}
 
-.nav-item.highlight .nav-link {
-  background-color: #30caa0 ; /* Change background color to orange */
-  color: white; /* Optional: Change text color for better contrast */
+.nav-item .nav-link {
+    color: white !important; /* Set all nav links to white */
+    text-decoration: none; /* Optional: remove underline */
+}
+
+.nav-item.active .nav-link {
+    color: rgb(12, 12, 12) !important; /* Change active link color to yellow */
+    
 }
 
 .nav-item.highlight .nav-link:hover {
-  background-color: darkorange; /* Optional: Change color on hover */
-  color: yellow; /* Optional: Change text color on hover */
+    background-color: darkorange; /* Change color on hover */
+    color: yellow; /* Change text color on hover */
 }
 
 
@@ -99,25 +104,28 @@
   100% { opacity: 1; }
 }
 
+ 
+ 
+/* Floating Button Styles */
 .floating-btn {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  padding: 15px 25px;
-  background-color: #30caa0;
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  color: white;
-  text-decoration: none;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-  z-index: 1000;
-  animation: blink 2s ease-in-out infinite;
+    position: fixed; /* Fixes the button in place */
+    right: 20px;     /* Distance from the right edge of the viewport */
+    top: 80%;        /* Center vertically */
+    transform: translateY(-50%); /* Adjusts the position to truly center it */
+    background-color: #30caa0; /* Optional: Set a background color */
+    color: #fff; /* Optional: Set text color */
+    padding: 10px 15px; /* Optional: Add some padding */
+    border-radius: 5px; /* Optional: Round the corners */
+    text-decoration: none; /* Remove underline from link */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
+    z-index: 1000; /* Ensure it appears above other elements */
+    animation: blink 1s infinite; /* Apply the blinking animation */
 }
+
 
 .floating-btn:hover {
   animation: none;
-  background-color: #278e71;
+  background-color: #30caa0;
 }
 
 
@@ -143,3 +151,5 @@
   line-height: 1.6;
   margin-bottom: 0;
 }
+ 
+ 

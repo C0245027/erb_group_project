@@ -10,23 +10,21 @@
 
 <div class="container mt-3" style="margin-left: 10px;">
  
- 
-    <p></p>
-    <br>
+  
     <p class="mb-3">請填寫以下資料，我們會盡快與您聯絡。</p>
     
     <form method="post" action="{% url 'booking' %}">
         {% csrf_token %}
         <div class="form-group mb-4">
-            <label for="name">姓名</label>
+            <label for="name">姓名 *</label>
             <input type="text" class="form-control" id="name" name="name" required>
         </div>
         <div class="form-group">
-            <label for="age">年齡</label>
+            <label for="age">年齡 *</label>
             <input type="number" class="form-control" id="age" name="age" required>
         </div>
         <div class="form-group">
-            <label for="gender">性別</label>
+            <label for="gender">性別 *</label>
             <select class="form-control" id="gender" name="gender" required>
                 <option value="">請選擇</option>
                 <option value="男">男</option>
@@ -34,31 +32,31 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="email">電子郵件</label>
+            <label for="email">電子郵件 *</label>
             <input type="email" class="form-control" id="email" name="email" required>
         </div>
         <div class="form-group">
-            <label for="address">地址</label>
+            <label for="address">地址 *</label>
             <input type="text" class="form-control" id="address" name="address" required>
         </div>
         <div class="form-group">
-            <label for="phone">電話號碼</label>
+            <label for="phone">電話號碼 *</label>
             <input type="text" class="form-control" id="phone" name="phone" required>
         </div>
         <div class="form-group">
-            <label for="medicalHistory">病史</label>
+            <label for="medicalHistory">病史 *</label>
             <textarea class="form-control" id="medicalHistory" name="medicalHistory" rows="4" required></textarea>
         </div>
         <div class="form-group">
-            <label for="emergencyContact">緊急聯絡人</label>
+            <label for="emergencyContact">緊急聯絡人 *</label>
             <input type="text" class="form-control" id="emergencyContact" name="emergencyContact" required>
         </div>
         <div class="form-group">
-            <label for="relationship">與緊急聯絡人關係</label>
+            <label for="relationship">與緊急聯絡人關係 *</label>
             <input type="text" class="form-control" id="relationship" name="relationship" required>
         </div>
         <div class="form-group mb-4">
-            <label for="stayDuration">預計入住日期</label>
+            <label for="stayDuration">預計入住日期 *</label>
             <input type="date" 
                    class="form-control" 
                    id="stayDuration" 
@@ -66,7 +64,7 @@
                    min="<?php echo date('Y-m-d'); ?>"
                    required>
         </div>
-        <button type="submit" class="btn btn-secondary">提交預約</button>
+        <button type="submit" class="btn btn-secondary btn-lg">提交預約</button>
     </form>
 </div>
 {% endblock %}
