@@ -11,55 +11,122 @@
         
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item {% if request.path == '/' %}active highlight{% endif %} ">
-                    <a class="nav-link" href="{% url 'index' %}">主頁</a>
+                <!-- 主頁 -->
+                <li class="nav-item {% if request.path == '/' %}active highlight{% endif %}" style="transition: all 0.3s ease;">
+                    <a class="nav-link" href="{% url 'index' %}" aria-label="主頁" aria-current="{% if request.path == '/' %}page{% else %}false{% endif %}" style="color: inherit; text-decoration: none;">
+                        <i class="fas fa-home"></i> 主頁
+                    </a>
                 </li>
-                <li class="nav-item {% if 'staffs' in request.path %}active highlight{% endif %} ">
-                    <a class="nav-link" href="{% url 'staffs' %}">員工簡介</a>
+
+                <!-- 分隔線 -->
+                <li class="nav-item">
+                    <div class="vr mx-2"></div>
                 </li>
-                <li class="nav-item {% if 'qualification' in request.path %}active highlight{% endif %} ">
-                    <a class="nav-link" href="{% url 'qualification' %}">入住條件</a>
+
+                <!-- 員工簡介 -->
+                <li class="nav-item {% if 'staffs' in request.path %}active highlight{% endif %}" style="transition: all 0.3s ease;">
+                    <a class="nav-link" href="{% url 'staffs' %}" aria-label="員工簡介" aria-current="{% if 'staffs' in request.path %}page{% else %}false{% endif %}" style="color: inherit; text-decoration: none;">
+                        <i class="fas fa-users"></i> 員工簡介
+                    </a>
                 </li>
-                <li class="nav-item {% if 'finapply' in request.path %}active highlight{% endif %} ">
-                    <a class="nav-link" href="{% url 'finapply' %}">申請資助</a>
+
+                <!-- 分隔線 -->
+                <li class="nav-item">
+                    <div class="vr mx-2"></div>
                 </li>
-                <li class="nav-item dropdown {% if 'meal' in request.path or 'fee' in request.path or 'qa' in request.path or 'opinion' in request.path or 'movein' in request.path or 'services' in request.path %} active highlight{% endif %} ">
+
+                <!-- 入住條件 -->
+                <li class="nav-item {% if 'qualification' in request.path %}active highlight{% endif %}" style="transition: all 0.3s ease;">
+                    <a class="nav-link" href="{% url 'qualification' %}" aria-label="入住條件" aria-current="{% if 'qualification' in request.path %}page{% else %}false{% endif %}" style="color: inherit; text-decoration: none;">
+                        <i class="fas fa-check-circle"></i> 入住條件
+                    </a>
+                </li>
+
+                <!-- 分隔線 -->
+                <li class="nav-item">
+                    <div class="vr mx-2"></div>
+                </li>
+
+                <!-- 申請資助 -->
+                <li class="nav-item {% if 'finapply' in request.path %}active highlight{% endif %}" style="transition: all 0.3s ease;">
+                    <a class="nav-link" href="{% url 'finapply' %}" aria-label="申請資助" aria-current="{% if 'finapply' in request.path %}page{% else %}false{% endif %}" style="color: inherit; text-decoration: none;">
+                        <i class="fas fa-hand-holding-usd"></i> 申請資助
+                    </a>
+                </li>
+
+                <!-- 分隔線 -->
+                <li class="nav-item">
+                    <div class="vr mx-2"></div>
+                </li>
+
+                <!-- 服務 Dropdown -->
+                <li class="nav-item dropdown {% if 'meal' in request.path or 'fee' in request.path or 'qa' in request.path or 'opinion' in request.path or 'movein' in request.path or 'services' in request.path %} active highlight{% endif %}" style="transition: all 0.3s ease;">
                     <a class="nav-link dropdown-toggle" href="#" id="servicedropdown" role="button" 
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        服務
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: inherit; text-decoration: none;">
+                        <i class="fas fa-cogs"></i> 服務
                     </a>
                     <div class="dropdown-menu" aria-labelledby="servicedropdown">
-                        <a class="dropdown-item" href="{% url 'services' %}">服務範圍</a>
-                        <a class="dropdown-item" href="{% url 'movein' %}"">入住流程</a>
-                        <a class="dropdown-item" href="{% url 'meal' %}">營養餐單</a>
-                        <a class="dropdown-item" href="{% url 'fee' %}">項目收費</a>
-                        <a class="dropdown-item" href="{% url 'qa' %}">常見問題</a>
-                        <a class="dropdown-item" href="{% url 'opinion' %}">客戶意見</a>
+                        <a class="dropdown-item" href="{% url 'services' %}" style="color: inherit; text-decoration: none;"><i class="fas fa-list"></i> 服務範圍</a>
+                        <a class="dropdown-item" href="{% url 'movein' %}" style="color: inherit; text-decoration: none;"><i class="fas fa-sign-in-alt"></i> 入住流程</a>
+                        <a class="dropdown-item" href="{% url 'meal' %}" style="color: inherit; text-decoration: none;"><i class="fas fa-utensils"></i> 營養餐單</a>
+                        <a class="dropdown-item" href="{% url 'fee' %}" style="color: inherit; text-decoration: none;"><i class="fas fa-money-bill-wave"></i> 項目收費</a>
+                        <a class="dropdown-item" href="{% url 'qa' %}" style="color: inherit; text-decoration: none;"><i class="fas fa-question-circle"></i> 常見問題</a>
+                        <a class="dropdown-item" href="{% url 'opinion' %}" style="color: inherit; text-decoration: none;"><i class="fas fa-comment-dots"></i> 客戶意見</a>
                     </div>
                 </li>
-                {% comment %} fix later{% endcomment %}
-                <li class="nav-item dropdown {% if 'application' in request.path or 'booking' in request.path %} active highlight{% endif %} ">
-                    <a class="nav-link dropdown-toggle" href="#" id="bookingdropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        預約
+
+                <!-- 分隔線 -->
+                <li class="nav-item">
+                    <div class="vr mx-2"></div>
+                </li>
+
+                <!-- 預約 Dropdown -->
+                <li class="nav-item dropdown {% if 'application' in request.path or 'booking' in request.path %} active highlight{% endif %}" style="transition: all 0.3s ease;">
+                    <a class="nav-link dropdown-toggle" href="#" id="bookingdropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: inherit; text-decoration: none;">
+                        <i class="fas fa-calendar-alt"></i> 預約
                     </a>
                     <div class="dropdown-menu" aria-labelledby="bookingdropdown">
-                        <a class="dropdown-item" href="{% url 'application' %}">預約參觀</a>
-                        <a class="dropdown-item" href="{% url 'booking' %}">預約入住</a>
+                        <a class="dropdown-item" href="{% url 'application' %}" style="color: inherit; text-decoration: none;"><i class="fas fa-eye"></i> 預約參觀</a>
+                        <a class="dropdown-item" href="{% url 'booking' %}" style="color: inherit; text-decoration: none;"><i class="fas fa-bed"></i> 預約入住</a>
                     </div>
                 </li>
-                {% comment %} fix later {% endcomment %}
-                <li class="nav-item {% if 'facilities' in request.path %}active highlight {% endif %} ">
-                    <a class="nav-link" href="{% url 'facilities' %}">院舍生活設施</a>
+
+                <!-- 分隔線 -->
+                <li class="nav-item">
+                    <div class="vr mx-2"></div>
                 </li>
-                {% comment %} fix later {% endcomment %}
-                <li class="nav-item {% if 'map' in request.path %}active highlight {% endif %} ">
-                    <a class="nav-link" href="{% url 'map' %}">地點資訊</a>
+
+                <!-- 院舍生活設施 -->
+                <li class="nav-item {% if 'facilities' in request.path %}active highlight{% endif %}" style="transition: all 0.3s ease;">
+                    <a class="nav-link" href="{% url 'facilities' %}" aria-label="院舍生活設施" aria-current="{% if 'facilities' in request.path %}page{% else %}false{% endif %}" style="color: inherit; text-decoration: none;">
+                        <i class="fas fa-building"></i> 院舍生活設施
+                    </a>
                 </li>
-                {% comment %} fix later {% endcomment %}
-                <li class="nav-item {% if 'about' in request.path %}active highlight {% endif %} ">
-                    <a class="nav-link" href="{% url 'about' %}">關於我們</a>
+
+                <!-- 分隔線 -->
+                <li class="nav-item">
+                    <div class="vr mx-2"></div>
+                </li>
+
+                <!-- 地點資訊 -->
+                <li class="nav-item {% if 'map' in request.path %}active highlight{% endif %}" style="transition: all 0.3s ease;">
+                    <a class="nav-link" href="{% url 'map' %}" aria-label="地點資訊" aria-current="{% if 'map' in request.path %}page{% else %}false{% endif %}" style="color: inherit; text-decoration: none;">
+                        <i class="fas fa-map-marked-alt"></i> 地點資訊
+                    </a>
+                </li>
+
+                <!-- 分隔線 -->
+                <li class="nav-item">
+                    <div class="vr mx-2"></div>
+                </li>
+
+                <!-- 關於我們 -->
+                <li class="nav-item {% if 'about' in request.path %}active highlight{% endif %}" style="transition: all 0.3s ease;">
+                    <a class="nav-link" href="{% url 'about' %}" aria-label="關於我們" aria-current="{% if 'about' in request.path %}page{% else %}false{% endif %}" style="color: inherit; text-decoration: none;">
+                        <i class="fas fa-info-circle"></i> 關於我們
+                    </a>
                 </li>
             </ul>
         </div>
     </div>
-</nav> 
+</nav>
