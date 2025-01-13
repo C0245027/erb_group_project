@@ -4,80 +4,68 @@
 {% block title %} | 老人營養餐單 {% endblock %}
 
 {% block content %}
+
+
 <div class="container mt-5">
-    <h1 class="display-4 text-center mb-4">營養餐單</h1>
-    
-    {% for week in weeks %}
-    <h2 class="text-left">第 {{ week }} 週</h2>
-    <table class="table table-bordered table-hover">
-        <thead class="thead-light">
+    <h1 class="display-4 text-center mb-4">當月餐單</h1>
+</div>
+
+<div class="container mt-3">
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
             <tr>
-                <th scope="col">星期</th>
-                <th scope="col">早餐</th>
-                <th scope="col">午餐</th>
-                <th scope="col">下午茶</th>
-                <th scope="col">晚餐</th>
+                <th>日期</th>
+                <th>星期</th>
+                <th>早餐</th>
+                <th>午餐</th>
+                <th>下午茶</th>
+                <th>晚餐</th>
             </tr>
         </thead>
         <tbody>
+            {% for meal in meals %}
             <tr>
-                <td>星期一</td>
-                <td>燕麥粥，水果</td>
-                <td>蒸魚，青菜，米飯</td>
-                <td>牛奶，餅乾</td>
-                <td>雞肉湯，麵條</td>
+                <td>{{ meal.setup_date|date:"Y-m-d" }}</td>
+                <td>
+                    {% with weekday=meal.setup_date|date:"l" %}
+                        {% if weekday == 'Monday' %}星期一
+                        {% elif weekday == 'Tuesday' %}星期二
+                        {% elif weekday == 'Wednesday' %}星期三
+                        {% elif weekday == 'Thursday' %}星期四
+                        {% elif weekday == 'Friday' %}星期五
+                        {% elif weekday == 'Saturday' %}星期六
+                        {% else %}星期日
+                        {% endif %}
+                    {% endwith %}
+                </td>
+                <td>{{ meal.breakfast_menu }}</td>
+                <td>{{ meal.lunch_menu }}</td>
+                <td>{{ meal.teatime_menu }}</td>
+                <td>{{ meal.dinner_menu }}</td>
             </tr>
+            {% empty %}
             <tr>
-                <td>星期二</td>
-                <td>豆漿，包子</td>
-                <td>紅燒肉，土豆，米飯</td>
-                <td>水果沙拉</td>
-                <td>清蒸蝦，蔬菜</td>
+                <td colspan="6" class="text-center">暫無餐單資料</td>
             </tr>
-            <tr>
-                <td>星期三</td>
-                <td>雞蛋，吐司</td>
-                <td>牛肉炒青菜，米飯</td>
-                <td>酸奶，堅果</td>
-                <td>豆腐湯，米飯</td>
-            </tr>
-            <tr>
-                <td>星期四</td>
-                <td>牛奶，饅頭</td>
-                <td>清蒸魚，米飯</td>
-                <td>茶，蛋糕</td>
-                <td>魚湯，蔬菜</td>
-            </tr>
-            <tr>
-                <td>星期五</td>
-                <td>水果燕麥</td>
-                <td>排骨湯，米飯</td>
-                <td>牛奶，水果</td>
-                <td>炒麵，青菜</td>
-            </tr>
-            <tr>
-                <td>星期六</td>
-                <td>豆腐腦，油條</td>
-                <td>蒸雞，米飯，蔬菜</td>
-                <td>餅乾，果汁</td>
-                <td>牛肉湯，米飯</td>
-            </tr>
-            <tr>
-                <td>星期日</td>
-                <td>粥，水果</td>
-                <td>魚香肉絲，米飯</td>
-                <td>茶，蛋糕</td>
-                <td>清蒸雞，蔬菜</td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
-    {% endfor %}
 </div>
 
 <style>
+    .table thead th {
+        background-color: #30caa0;
+        color: white;
+    }
     .table tbody tr:nth-child(odd) {
-        background-color: #FFA07A; /* Light orange color */
+        background-color: #f8f9fa;
+    }
+    .table tbody tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+    .table td, .table th {
+        padding: 12px;
+        vertical-align: middle;
     }
 </style>
-
 {% endblock %}

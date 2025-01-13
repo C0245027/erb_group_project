@@ -1,7 +1,68 @@
-{% extends "base.html" %}
-{% load static %}
-{% block title %} | 預約入住 {% endblock %}
-{% block content %}
 
-{% endblock %}
- 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Company Location</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 600px;
+        }
+		.container {
+            margin-top: 20px;
+        }
+        .intro {
+            margin-bottom: 20px;
+            line-height: 1.2; /* Adjust the line-height as needed */
+        }
+        .contact-info p {
+            margin-bottom: 5px; /* Adjust the margin as needed */
+            line-height: 0.6; /* Adjust the line-height as needed */
+        }
+    </style>
+		
+</head>
+<body>
+	<img src="/static/img/together_s.jpg" style="width:60%"> </img>
+	<br>
+	<div>
+		<h2 style="color:green"> 敬老如親．樂盡所能</h2>
+		<div > 養心園安老院創辦於2000年，本著「敬老如親」的精神，矢志為香港的安老服務行業打造嶄新標準。憑藉我們對提升護老服務質素的不懈堅持和業務創新，養心園安老院由護理安老院舍營運商成為現時具規模的護老集團，並成為長者護理行業中的優質品牌之一。
+		</div>
+	<div>
+	<div>
+		<h2 style="color:green"> 聲譽優良．積極創新</h2>
+		<div> 
+			<p>養心園安老院紮根於香港逾25載，致力提供「以人為本」的優質安老服務。養心園安老院在香港護老服務中擁有優良聲譽，現時院舍在佈新界。我們尊重及愛護每位長者，致力為他們提供適切而優質的護老服務。</p>
+			
+			<p>養心園一直配合政府的安老政策發展，乃政府「改善買位計劃」甲一級買位院舍的主要服務提供者之一，並為「長者院舍照顧服務券計劃」 (院舍券) 認可院舍。同時，養心園安老院亦參與營辦政府資助的合約院舍，擴大服務對象範圍。<p>
+			
+			<p>			近年，養心園安老院積極發展新概念的護老服務，推出「尚耆．賢居」系列，為有追求的長者提供更優質的護老院舍選項。「尚耆．賢居」融合舒適優雅的生活環境，以及高質專業的醫療、護理及個人照顧服務，務求讓每一位長者均能於愜意的環境，獲得最適切的照顧。我們將不遺餘力，優化護老服務的每一個細節。</p>
+		</div>
+	<div>
+
+    <h1 style="color:red">養心園安老院-院舍地址</h1>
+	<div class="contact-info"> 
+		<p>地址: 新界粉嶺小坑新村F55, F52 地下</p> 
+		<p>電話: (852)-555-5555</p> 
+		<p>電郵: info@elderly.com.hk</p>
+	</div>
+	<br>
+		
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([22.5103, 114.1458], 17);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        L.marker([22.5103, 114.1458]).addTo(map)
+            .bindPopup('<b>養心園安老院</b><br />Ground Floor, F55, F52, Siu Hang San Tsuen, Fanling, NT.(新界粉嶺小坑新村F55, F52 地下)')
+            .openPopup();
+    </script>
+</body>
+</html>

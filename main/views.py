@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.conf import settings
 from django.contrib import messages
 
+from main.models import Meal
+
 # Create your views here.
 def index(request):     
     return render(request,'main/index.html')
@@ -196,8 +198,9 @@ def booking(request):
     return render(request, 'main/booking.html')
 
 
+def meal_list(request):
+    meals = Meal.objects.all().order_by('setup_date')
 
-def meal(request): 
-    weeks = ['一', '二', '三', '四'] # Create a range of weeks
-    return render(request, 'main/meal.html', {'weeks': weeks})
-
+    print("Number of meals:", meals.count())  # Debug print
+    print("Meals:", list(meals.values()))     # Debug print
+    return render(request, 'main/meal.html', {'meals': meals})
