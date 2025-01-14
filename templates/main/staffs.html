@@ -19,12 +19,9 @@
                     
                     <div class="card-body">
                         <h5 class="card-title">{{ staff.name }}</h5>
-                        <p class="card-text">
+                        <p class="card-text" style="font-size: 18px;">
                             <strong>職位：</strong>{{ staff.job_title }}<br>
-                            <strong>職責：</strong>{{ staff.job_duties }}<br>
-                            {% if staff.description %}
-                                <strong>簡介：</strong>{{ staff.description }}
-                            {% endif %}
+                            <strong>職責：</strong>{{ staff.job_duties }}<br> 
                         </p>
                     </div>
                 </div>

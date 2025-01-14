@@ -63,7 +63,7 @@ def contactus(request):
         opinion = request.POST['opinion']
 
         subject = '養心園安老院舍 - 聯絡我們'
-        email_message = f'姓名: {name}\n電話號碼: {telephone}\n電子郵件: {email}\n意見:\n{opinion}'
+        email_message = f'姓名: {name}\n電話號碼: {telephone}\n電子郵件: {email}\n意見:\n{opinion}\n\n\n您的請求已提交,請耐心等待,我們的工作人員將儘快與您聯繫'
  
         try: 
             # Send the email

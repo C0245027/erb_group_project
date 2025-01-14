@@ -41,12 +41,14 @@ class Staff(AbstractUser):
 
 
 class Meal(models.Model):
-    setup_date = models.DateField(default=timezone.now)  # Date only for meal setup
+    setup_date = models.DateField(
+        default=timezone.now, 
+        verbose_name='Meal Date'  # Add this line
+    )
     breakfast_menu = models.TextField(blank=True)  # Optional breakfast menu
     lunch_menu = models.TextField(blank=True)  # Optional lunch menu
     teatime_menu = models.TextField(blank=True)  # Optional teatime menu
     dinner_menu = models.TextField(blank=True)  # Optional dinner menu
-    user = models.ForeignKey(Staff, on_delete=models.CASCADE, related_name='meals')  # Correct: link to CustomUser
-
+  
     def __str__(self):
-        return f'Meal setup on {self.setup_date} by {self.user.username}'  # Correct: returns meal setup date and user
+        return f'Meal setup on {self.setup_date}'  # Correct: returns meal setup date and user
