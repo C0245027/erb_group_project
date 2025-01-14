@@ -1,7 +1,9 @@
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
-from django.core.validators import EmailValidator
-from django.utils import timezone
+from django.core.validators import EmailValidator, MinValueValidator, MaxValueValidator
+from django.utils import timezone  
+from django.db.models import Max
+
 
 class Staff(AbstractUser):
     # Extending the default User model with additional fields
@@ -9,7 +11,7 @@ class Staff(AbstractUser):
     job_title = models.CharField(max_length=200)  # Job title field
     job_duties = models.TextField(blank=True)  # Optional job duties field
     phone = models.CharField(max_length=20, blank=True, unique=True)  # Optional phone number, must be unique
-    home_address = models.CharField(max_length=200, blank=True)  # Optional home address field
+    home_address = models.TextField(blank=True)  # Optional home address field
     photo = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)  # Optional photo upload
     hire_date = models.DateTimeField(default=timezone.now, blank=True)  # Hire date with default to now
     
@@ -41,14 +43,28 @@ class Staff(AbstractUser):
 
 
 class Meal(models.Model):
-    setup_date = models.DateField(
-        default=timezone.now, 
-        verbose_name='Meal Date'  # Add this line
+    def get_next_day():
+        last_day = Meal.objects.aggregate(Max('Day_of_month'))['Day_of_month__max']
+        if last_day is None:
+            return 1
+        return last_day + 1 if last_day < 31 else 1
+
+    Day_of_month = models.IntegerField(
+        validators=[
+            MinValueValidator(1, message='Day must be at least 1'),
+            MaxValueValidator(31, message='Day cannot exceed 31')
+        ],
+        verbose_name='Day of Month',
+        default=get_next_day
     )
-    breakfast_menu = models.TextField(blank=True)  # Optional breakfast menu
-    lunch_menu = models.TextField(blank=True)  # Optional lunch menu
-    teatime_menu = models.TextField(blank=True)  # Optional teatime menu
-    dinner_menu = models.TextField(blank=True)  # Optional dinner menu
-  
+    breakfast_menu = models.TextField(blank=True)
+    lunch_menu = models.TextField(blank=True)
+    teatime_menu = models.TextField(blank=True)
+    dinner_menu = models.TextField(blank=True)
+
     def __str__(self):
-        return f'Meal setup on {self.setup_date}'  # Correct: returns meal setup date and user
+        return f'Meal for day {self.Day_of_month}'
+
+    class Meta:
+        ordering = ['Day_of_month']
+  
