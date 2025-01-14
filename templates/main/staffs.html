@@ -4,92 +4,63 @@
 {% block title %} | 專業團隊 {% endblock %}
 
 {% block content %}
- 
-<div class="container mt-5 d-flex justify-content-center align-items-center">
-  <p class="block-styled-text">專業團隊</p>
-</div>
-  
-  <style>
- 
-    .staff-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    .staff-card {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      text-align: center;
-      padding: 20px;
-    }
-    .staff-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-    .staff-card h2 {
-      margin: 15px 0 10px;
-      font-size: 1.5em;
-      color: #333;
-    }
-    .staff-card p {
-      margin: 0;
-      color: #777;
-    }
-    .staff-card .role {
-      font-weight: bold;
-      color: #555;
-    }
-  </style>
-  
-  <div class="container">
- 
-    <div class="staff-grid">
-      <!-- Staff Member 1 -->
-      <div class="staff-card">
-        <img src="https://via.placeholder.com/250" alt="John Doe">
-        <h2>John Doe</h2>
-        <p class="role">CEO</p>
-        <p>John is the founder and visionary leader of our company.</p>
-      </div>
-      <!-- Staff Member 2 -->
-      <div class="staff-card">
-        <img src="https://via.placeholder.com/250" alt="Jane Smith">
-        <h2>Jane Smith</h2>
-        <p class="role">Marketing Director</p>
-        <p>Jane leads our marketing efforts with creativity and passion.</p>
-      </div>
-      <!-- Staff Member 3 -->
-      <div class="staff-card">
-        <img src="https://via.placeholder.com/250" alt="Mike Johnson">
-        <h2>Mike Johnson</h2>
-        <p class="role">Lead Developer</p>
-        <p>Mike ensures our technology is cutting-edge and reliable.</p>
-      </div>
-      <!-- Staff Member 4 -->
-      <div class="staff-card">
-        <img src="https://via.placeholder.com/250" alt="Sarah Lee">
-        <h2>Sarah Lee</h2>
-        <p class="role">Designer</p>
-        <p>Sarah creates stunning designs that captivate our audience.</p>
-      </div>
-      <!-- Staff Member 5 -->
-      <div class="staff-card">
-        <img src="https://via.placeholder.com/250" alt="Chris Brown">
-        <h2>Chris Brown</h2>
-        <p class="role">Sales Manager</p>
-        <p>Chris drives our sales team to achieve exceptional results.</p>
-      </div>
-      <!-- Staff Member 6 -->
-      <div class="staff-card">
-        <img src="https://via.placeholder.com/250" alt="Emily Davis">
-        <h2>Emily Davis</h2>
-        <p class="role">Customer Support</p>
-        <p>Emily ensures our customers receive the best support possible.</p>
-      </div>
+<div class="container mt-5">
+    <h1 class="display-4 text-center mb-4">專業團隊</h1>
+
+    <div class="row">
+        {% for staff in staffs %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    {% if staff.photo %}
+                        <img src="{{ staff.photo.url }}" class="card-img-top" alt="{{ staff.name }}">
+                    {% else %}
+                        <img src="{% static 'img/default-profile.png' %}" class="card-img-top" alt="Default Profile">
+                    {% endif %}
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">{{ staff.name }}</h5>
+                        <p class="card-text">
+                            <strong>職位：</strong>{{ staff.job_title }}<br>
+                            <strong>職責：</strong>{{ staff.job_duties }}<br>
+                            {% if staff.description %}
+                                <strong>簡介：</strong>{{ staff.description }}
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12 text-center">
+                <p>暫無員工資料</p>
+            </div>
+        {% endfor %}
     </div>
-  </div>
+</div>
+
+<style>
+    .card {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        border: none;
+        height: 100%;
+    }
+    .card-img-top {
+        height: 300px; /* Increased height for larger photo */
+        object-fit: contain; /* Ensure the entire image is visible */
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        width: 100%; /* Ensure the image takes the full width of the card */
+    }
+    .card-title {
+        color: #30caa0;
+        margin-bottom: 15px;
+    }
+    .card-text {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    .card-text strong {
+        color: #555;
+    }
+</style>
 {% endblock %}

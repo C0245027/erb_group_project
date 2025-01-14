@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.conf import settings
 from django.contrib import messages
 
-from main.models import Meal
+from main.models import Meal, Staff
 
 # Create your views here.
 def index(request):     
@@ -26,8 +26,17 @@ def opinion(request):
 def fee(request):
     return render(request,'main/fee.html')
 
+
+def meal_list(request):
+    meals = Meal.objects.all().order_by('setup_date')
+
+    print("Number of meals:", meals.count())  # Debug print
+    print("Meals:", list(meals.values()))     # Debug print
+    return render(request, 'main/meal.html', {'meals': meals})
+
 def staffs(request):
-    return render(request,'main/staffs.html')
+    staffs = Staff.objects.filter(staff_type='Specialist')
+    return render(request, 'main/staffs.html', {'staffs': staffs})
 
 def qa(request):
     return render(request,'main/qa.html')
@@ -40,14 +49,35 @@ def movein(request):
 
 def facilities(request):
     return render(request,'main/facilities.html')
-
-
-def qualification(request):
-    return render(request,'main/qualification.html')
-
+ 
                         
 def map(request):
     return render(request,'main/map.html')
+
+
+def contactus(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        telephone = request.POST['telephone']
+        email = request.POST['email']
+        opinion = request.POST['opinion']
+
+        subject = '養心園安老院舍 - 聯絡我們'
+        email_message = f'姓名: {name}\n電話號碼: {telephone}\n電子郵件: {email}\n意見:\n{opinion}'
+ 
+        try: 
+            # Send the email
+            send_mail(subject, email_message, settings.DEFAULT_FROM_EMAIL, [settings.DEFAULT_FROM_EMAIL, email])
+            messages.success(request, '您的請求已提交，請耐心等待，我們的工作人員將儘快與您聯繫。')
+        except Exception as e:
+            print('Error sending email:', e)
+            messages.error(request, f'Error sending email: {e}')
+
+
+
+        return redirect('index')    
+
+    return render(request,'main/contactus.html')
 
 def application(request):
     if request.method == 'POST':
@@ -138,9 +168,7 @@ def opinion(request):
             return redirect('opinion')
 
     return render(request, 'main/opinion.html')
-
-
-
+ 
 def booking(request):
     if request.method == 'POST':
         try:
@@ -196,11 +224,3 @@ def booking(request):
             return redirect('booking')
 
     return render(request, 'main/booking.html')
-
-
-def meal_list(request):
-    meals = Meal.objects.all().order_by('setup_date')
-
-    print("Number of meals:", meals.count())  # Debug print
-    print("Meals:", list(meals.values()))     # Debug print
-    return render(request, 'main/meal.html', {'meals': meals})

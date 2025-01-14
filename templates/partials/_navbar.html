@@ -34,13 +34,7 @@
                 <li class="nav-item">
                     <div class="vr mx-2"></div>
                 </li>
-
-                <!-- 入住條件 -->
-                <li class="nav-item {% if 'qualification' in request.path %}active highlight{% endif %}" style="transition: all 0.3s ease;">
-                    <a class="nav-link" href="{% url 'qualification' %}" aria-label="入住條件" aria-current="{% if 'qualification' in request.path %}page{% else %}false{% endif %}" style="color: inherit; text-decoration: none;">
-                        <i class="fas fa-check-circle"></i> 入住條件
-                    </a>
-                </li>
+ 
 
                 <!-- 分隔線 -->
                 <li class="nav-item">
@@ -66,21 +60,12 @@
                         <i class="fas fa-cogs"></i> 服務
                     </a>
                     <div class="dropdown-menu" aria-labelledby="servicedropdown">
-<<<<<<< HEAD
-                        <a class="dropdown-item" href="{% url 'services' %}">服務範圍</a>
-                        <a class="dropdown-item" href="{% url 'movein' %}">入住流程</a>
-                        <a class="dropdown-item" href="{% url 'meal' %}">營養餐單</a>
-                        <a class="dropdown-item" href="{% url 'fee' %}">項目收費</a>
-                        <a class="dropdown-item" href="{% url 'qa' %}">常見問題</a>
-                        <a class="dropdown-item" href="{% url 'opinion' %}">客戶意見</a>
-=======
                         <a class="dropdown-item" href="{% url 'services' %}" style="color: inherit; text-decoration: none;"><i class="fas fa-list"></i> 服務範圍</a>
                         <a class="dropdown-item" href="{% url 'movein' %}" style="color: inherit; text-decoration: none;"><i class="fas fa-sign-in-alt"></i> 入住流程</a>
                         <a class="dropdown-item" href="{% url 'meal' %}" style="color: inherit; text-decoration: none;"><i class="fas fa-utensils"></i> 營養餐單</a>
                         <a class="dropdown-item" href="{% url 'fee' %}" style="color: inherit; text-decoration: none;"><i class="fas fa-money-bill-wave"></i> 項目收費</a>
                         <a class="dropdown-item" href="{% url 'qa' %}" style="color: inherit; text-decoration: none;"><i class="fas fa-question-circle"></i> 常見問題</a>
                         <a class="dropdown-item" href="{% url 'opinion' %}" style="color: inherit; text-decoration: none;"><i class="fas fa-comment-dots"></i> 客戶意見</a>
->>>>>>> 822da5af56f55e9d031893c69227c7a1fe92ae1e
                     </div>
                 </li>
 
@@ -135,6 +120,14 @@
                         <i class="fas fa-info-circle"></i> 關於我們
                     </a>
                 </li>
+
+                <!-- 聯絡我們 -->
+                <li class="nav-item {% if 'about' in request.path %}active highlight{% endif %}" style="transition: all 0.3s ease;">
+                    <a class="nav-link" href="{% url 'contactus' %}" aria-label="聯絡我們" aria-current="{% if 'about' in request.path %}page{% else %}false{% endif %}" style="color: inherit; text-decoration: none;">
+                        <i class="fas fa-info-circle"></i> 聯絡我們
+                    </a>
+                </li>
+
             </ul>
         </div>
     </div>
