@@ -1,4 +1,3 @@
- 
 .custom-navbar {
     background-color: #30caa0 !important;  
     color: #d11654 !important; /* This will apply to the navbar itself */
@@ -14,33 +13,57 @@
     
 }
 
-.nav-item.highlight .nav-link:hover {
-    background-color: darkorange; /* Change color on hover */
-    color: yellow; /* Change text color on hover */
+.nav-item {
+  border-radius: 8px;
+  margin: 0 4px;
+  transition: all 0.3s ease;
 }
 
+/* Highlight effect (hover and active state) */
+.nav-item.highlight .nav-link:hover,
+.nav-item.highlight:active .nav-link {
+  background-color: #FFFF00; /* 黃色背景 */
+  color: black !important; /* 黑色文字 */
+  border-radius: 8px; /* 加入圓角 */
+}
 
-/* Change background color of dropdown submenu items */
+/* Active state */
+.nav-item.active {
+  background-color: #a8e6cf; /* 柔和綠色背景 */
+  border-radius: 8px;
+}
+
+.nav-item.active .nav-link {
+  color: black !important; /* 黑色文字 */
+}
+
+/* Dropdown items */
+.dropdown-item:hover,
+.dropdown-item:active {
+  background-color: #FFFF00 !important; /* 黃色背景 */
+  color: black !important; /* 黑色文字 */
+  border-radius: 4px;
+}
+
+/* Dropdown menu styling */
 .dropdown-menu .dropdown-item {
   background-color: white;
   color: black;
-  font-size: 1.2rem;  /* Increase dropdown item font size */
-  padding: 0.5rem 1rem;  /* Add padding around text */
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
 }
 
+/* Active dropdown item */
+.dropdown-item.active {
+  background-color: #a8e6cf !important; /* 柔和綠色背景 */
+  color: black !important;
+}
 
-.dropdown-menu .dropdown-item:hover {
-  background-color: darkorange; /* Change background color */
-  color: black; /* Optional: Change text color for better contrast */
-} 
- 
-
- 
 .img-large {
   width: 100%;
   height: auto;
 }
- 
 
 /* Reduce margin of the container */
 .container {
@@ -87,7 +110,7 @@
   background-color: #0056b3;
 }
 
- 
+
 .block-styled-text {
   background-color: #ca8c30;
   color: #ffffff;
@@ -104,8 +127,7 @@
   100% { opacity: 1; }
 }
 
- 
- 
+
 /* Floating Button Styles */
 .floating-btn {
     position: fixed; /* Fixes the button in place */
@@ -161,4 +183,71 @@
 /* Optional: Change the close button color */
 .alert .close {
   color: white; /* Close button color */
+}
+
+/* 新增 hover 效果 */
+.nav-item:not(.active):hover {
+  background-color: #FFFF00; /* 黃色背景 */
+  border-radius: 8px; /* 圓角 */
+}
+
+.nav-item:not(.active):hover .nav-link {
+  color: black !important; /* 黑色文字 */
+}
+
+/* 為 mobile phone 加入左邊 padding */
+@media (max-width: 767.98px) {
+    .nav-item {
+        padding-left: 15px;
+        margin: 4px 0;
+    }
+    
+    .navbar-nav {
+        width: 100%;
+    }
+    
+    .nav-link {
+        padding: 8px 15px !important;
+    }
+    
+    .dropdown-menu {
+        margin-left: 15px;
+        width: calc(100% - 30px);
+    }
+
+    /* 新增 pressed/pressing 效果 */
+    .nav-item:active,
+    .nav-item.active:active {
+        background-color: #a8e6cf !important;
+        
+    }
+
+    .nav-item.highlight:active {
+        background-color: #FFFF00 !important;
+        
+    }
+
+    .nav-item:active .nav-link,
+    .nav-item.active:active .nav-link,
+    .nav-item.highlight:active .nav-link {
+        color: black !important;
+    }
+}
+
+/* 統一 dropdown menu 圓角 */
+.navbar .dropdown-menu {
+    border-radius: 8px !important;
+    margin-top: 8px !important;
+}
+
+/* 統一 dropdown item 圓角 */
+.navbar .dropdown-item {
+    border-radius: 4px !important;
+    margin: 2px 4px !important;
+}
+
+/* 統一 dropdown toggle 箭頭樣式 */
+.navbar .dropdown-toggle::after {
+    vertical-align: 0.15em !important;
+    margin-left: 0.5em !important;
 }
