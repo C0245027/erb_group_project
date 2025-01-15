@@ -45,7 +45,7 @@ class Staff(AbstractUser):
 class Meal(models.Model):
     id = models.AutoField(primary_key=True)
     def get_next_day():
-        last_day = Meal.objects.aggregate(Max('Day_of_month'))['Day_of_month__max']
+        last_day = Meal.objects.aggregate(Max('day_of_month'))['day_of_month__max']
         if last_day is None:
             return 1
         return last_day + 1 if last_day < 31 else 1
