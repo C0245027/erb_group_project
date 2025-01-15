@@ -4,8 +4,6 @@
 {% block title %} | 老人營養餐單 {% endblock %}
 
 {% block content %}
-
-
 <div class="container mt-5">
     <h1 class="display-4 text-center mb-4">當月餐單</h1>
 </div>
@@ -24,29 +22,20 @@
         </thead>
         <tbody>
             {% for meal in meals %}
-            <tr>
-                <td>{{ meal.setup_date|date:"Y-m-d" }}</td>
-                <td>
-                    {% with weekday=meal.setup_date|date:"l" %}
-                        {% if weekday == 'Monday' %}星期一
-                        {% elif weekday == 'Tuesday' %}星期二
-                        {% elif weekday == 'Wednesday' %}星期三
-                        {% elif weekday == 'Thursday' %}星期四
-                        {% elif weekday == 'Friday' %}星期五
-                        {% elif weekday == 'Saturday' %}星期六
-                        {% else %}星期日
-                        {% endif %}
-                    {% endwith %}
-                </td>
-                <td>{{ meal.breakfast_menu }}</td>
-                <td>{{ meal.lunch_menu }}</td>
-                <td>{{ meal.teatime_menu }}</td>
-                <td>{{ meal.dinner_menu }}</td>
-            </tr>
+             
+                <tr>
+                    <td>{% now "Y年m月" %}{{ meal.day_of_month }}日</td>
+                    <td>{{ meal.weekday }}</td>
+
+                    <td>{{ meal.breakfast_menu }}</td>
+                    <td>{{ meal.lunch_menu }}</td>
+                    <td>{{ meal.teatime_menu }}</td>
+                    <td>{{ meal.dinner_menu }}</td>
+                </tr>
             {% empty %}
-            <tr>
-                <td colspan="6" class="text-center">暫無餐單資料</td>
-            </tr>
+                <tr>
+                    <td colspan="5" class="text-center">暫無餐單資料</td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>

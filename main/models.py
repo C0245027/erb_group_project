@@ -10,7 +10,7 @@ class Staff(AbstractUser):
     age = models.PositiveIntegerField(null=True, blank=True)  # Optional age field
     job_title = models.CharField(max_length=200)  # Job title field
     job_duties = models.TextField(blank=True)  # Optional job duties field
-    phone = models.CharField(max_length=20, blank=True, unique=True)  # Optional phone number, must be unique
+    phone = models.CharField(max_length=20, blank=True)  # Optional phone number, must be unique
     home_address = models.TextField(blank=True)  # Optional home address field
     photo = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)  # Optional photo upload
     hire_date = models.DateTimeField(default=timezone.now, blank=True)  # Hire date with default to now
@@ -43,13 +43,14 @@ class Staff(AbstractUser):
 
 
 class Meal(models.Model):
+    id = models.AutoField(primary_key=True)
     def get_next_day():
         last_day = Meal.objects.aggregate(Max('Day_of_month'))['Day_of_month__max']
         if last_day is None:
             return 1
         return last_day + 1 if last_day < 31 else 1
 
-    Day_of_month = models.IntegerField(
+    day_of_month = models.IntegerField(
         validators=[
             MinValueValidator(1, message='Day must be at least 1'),
             MaxValueValidator(31, message='Day cannot exceed 31')
@@ -57,14 +58,15 @@ class Meal(models.Model):
         verbose_name='Day of Month',
         default=get_next_day
     )
+
     breakfast_menu = models.TextField(blank=True)
     lunch_menu = models.TextField(blank=True)
     teatime_menu = models.TextField(blank=True)
     dinner_menu = models.TextField(blank=True)
 
     def __str__(self):
-        return f'Meal for day {self.Day_of_month}'
+        return f'Meal for day {self.day_of_month}'
 
     class Meta:
-        ordering = ['Day_of_month']
+        ordering = ['day_of_month']
   

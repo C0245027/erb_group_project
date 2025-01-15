@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.conf import settings
 from django.contrib import messages
+from datetime import datetime, date
 
 from main.models import Meal, Staff
 
@@ -28,11 +29,28 @@ def fee(request):
 
 
 def meal_list(request):
-    meals = Meal.objects.all().order_by('setup_date')
+    current_date = datetime.now()
+    meals = Meal.objects.all().order_by('day_of_month')
+    
+    weekday_chinese = {
+        0: '星期一',
+        1: '星期二',
+        2: '星期三',
+        3: '星期四',
+        4: '星期五',
+        5: '星期六',
+        6: '星期日'
+    }
 
-    print("Number of meals:", meals.count())  # Debug print
-    print("Meals:", list(meals.values()))     # Debug print
-    return render(request, 'main/meal.html', {'meals': meals})
+    for meal in meals:
+        # Calculate weekday for each meal's day in current month
+        meal_date = date(current_date.year, current_date.month, meal.day_of_month)
+        meal.weekday = weekday_chinese[meal_date.weekday()]
+
+    return render(request, 'main/meal.html', {
+        'meals': meals,
+        'current_month': current_date.strftime('%Y年%m月')
+    })
 
 def staffs(request):
     staffs = Staff.objects.filter(staff_type='Specialist')
