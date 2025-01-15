@@ -2,23 +2,36 @@
 {% load static %}
 {% block title %} | Welcome {% endblock %}
 {% block content %}
- 
-
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-
-            <h1 class="display-4">養心園安老院舍</h1>
-            <p class="lead">我們致力提供優質護老、安老服務</p>
+            <section class="section mx-auto" style="max-width: 800px; background: #fff; padding: 1rem; margin-bottom: 0.5rem; border-radius: 2rem; margin-top: 1rem;">
+                <p class="lead" style="font-size: 1.1rem; line-height: 1.6; color: #000;">我們致力提供優質護老、安老服務</p>
+                <p style="font-size: 1.1rem; line-height: 1.6; color: #000;">在養心園，我們深信每位長者都值得擁有尊嚴、關愛和優質的生活。我們以「老有所養、老有所依、老有所樂」為宗旨，為長者提供一個溫馨如家的環境。</p>
+            </section>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-12">
-            <img src="{% static 'img/elderly_main.jpg' %}" alt="Main Page Image" style="width: 1000px; height: 600px; margin-top: 10px;">
+            <section class="section mx-auto" style="max-width: 800px; background: #f8f9fa; padding: 1rem; margin-bottom: 0.5rem; border-radius: 2rem;">
+                <img src="{% static 'img/slider_1_2_0.jpg' %}" alt="Main Page Image" 
+                     style="width: 100%; height: auto; border-radius: 1rem; max-height: 500px; object-fit: cover;">
+            </section>
         </div>
     </div>
-    
+
+    <div class="row">
+        <div class="col-md-12">
+            <section class="section mx-auto" style="max-width: 800px; background: #fff; padding: 1rem; margin-bottom: 0.5rem; border-radius: 2rem;">
+                <div class="foreword">
+                    <p style="font-size: 1.1rem; line-height: 1.6; color: #000;">我們的專業團隊由經驗豐富的護理人員、營養師和康復治療師組成，24小時全天候照顧長者的身心健康。我們提供個性化的護理計劃，滿足不同長者的需求，包括日常起居照顧、醫療護理、康復治療和社交活動。</p>
+                    <p style="font-size: 1.1rem; line-height: 1.6; color: #000;">養心園不僅是一個安老院舍，更是一個充滿愛與關懷的大家庭。我們定期舉辦各種文化活動、興趣班和節日慶祝，讓長者保持積極樂觀的心態，享受充實的晚年生活。</p>
+                    <p style="font-size: 1.1rem; line-height: 1.6; color: #000;">歡迎您來訪參觀，親身體驗養心園的溫暖氛圍，讓我們一起為您的摯愛打造一個安心、舒適的家。</p>
+                </div>
+            </section>
+        </div>
+    </div>
 </div>
 {% endblock %}
