@@ -55,18 +55,44 @@ class Meal(models.Model):
             MinValueValidator(1, message='Day must be at least 1'),
             MaxValueValidator(31, message='Day cannot exceed 31')
         ],
-        verbose_name='Day of Month',
+        verbose_name='日號',
         default=get_next_day
     )
 
-    breakfast_menu = models.TextField(blank=True)
-    lunch_menu = models.TextField(blank=True)
-    teatime_menu = models.TextField(blank=True)
-    dinner_menu = models.TextField(blank=True)
+    breakfast_menu = models.TextField(blank=True,verbose_name='早餐')
+    lunch_menu = models.TextField(blank=True,verbose_name='午餐')
+    teatime_menu = models.TextField(blank=True,verbose_name='茶點')
+    dinner_menu = models.TextField(blank=True,verbose_name='晚餐')
 
     def __str__(self):
         return f'Meal for day {self.day_of_month}'
 
     class Meta:
         ordering = ['day_of_month']
-  
+
+
+class Price(models.Model):
+    PRODUCT_TYPES = [
+        ('Bed', '床位'),
+        ('Others', '其他')
+    ]
+
+    product_type = models.CharField(
+        max_length=10,
+        choices=PRODUCT_TYPES,
+        default='Bed',
+        verbose_name='類別'
+    )
+    description = models.TextField(
+        verbose_name='描述'
+    )
+    price = models.DecimalField(
+        max_digits=10, 
+        decimal_places=2,
+        verbose_name='價格'
+    )
+
+    def __str__(self):
+        return f"{self.get_product_type_display()} - ${self.price}"
+
+ 

@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib import messages
 from datetime import datetime, date
 
-from main.models import Meal, Staff
+from main.models import Meal, Staff, Price
 
 # Create your views here.
 def index(request):     
@@ -25,7 +25,8 @@ def opinion(request):
     return render(request,'main/opinion.html')
 
 def fee(request):
-    return render(request,'main/fee.html')
+    prices = Price.objects.all().order_by('product_type', 'price')
+    return render(request, 'main/fee.html', {'prices': prices})
 
 
 def meal_list(request):
