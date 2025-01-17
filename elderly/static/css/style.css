@@ -185,6 +185,23 @@
   color: white; /* Close button color */
 }
 
+/* 聯絡我們按鈕特別樣式 */
+.nav-item[style*="background-color: #86236e"] {
+  background-color: #86236e !important;
+}
+
+.nav-item[style*="background-color: #86236e"] .nav-link {
+  color: white !important;
+}
+
+.nav-item[style*="background-color: #86236e"]:hover {
+  background-color: #FFFF00 !important;
+}
+
+.nav-item[style*="background-color: #86236e"]:hover .nav-link {
+  color: black !important;
+}
+
 /* 新增 hover 效果 */
 .nav-item:not(.active):hover {
   background-color: #FFFF00; /* 黃色背景 */

@@ -1,54 +1,87 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %} | 關於我們 - 養心園  {% endblock %}
+
+{% block title %} | 關於我們 {% endblock %}
+
 {% block content %}
 
+<div class="container">
+    <section class="section mx-auto" style="max-width: 800px; background: #fff; padding: 2rem; margin-bottom: 1rem; border-radius: 2rem;">
+        <h2 style="color: #000; margin-bottom: 1.5rem;">
+            <i class="fas fa-info-circle" style="color: #30caa0; margin-right: 0.5rem;"></i>
+            關於我們
+        </h2>
 
-<div class="container mt-5">
-  <p class="block-styled-text">服務理念</p>
+        <div class="about-content">
+            <section class="about-section" style="margin-bottom: 2rem;">
+                <!--h3 style="color: #30caa0; margin-bottom: 1rem;">
+                    <i class="fas fa-building" style="margin-right: 0.5rem;"></i>
+                    中心簡介
+                </h3-->
+                <p style="font-size: 1.1rem; line-height: 1.6; color: #000;">
+                    我哋係一間專業嘅長者護理中心，致力為長者提供優質嘅護理服務。我哋嘅團隊由經驗豐富嘅護理人員、社工同醫療專業人員組成，為長者提供全面嘅照顧。
+                </p>
+            </section>
+
+            <section class="about-section" style="margin-bottom: 2rem;">
+                <h3 style="color: #30caa0; margin-bottom: 1rem;">
+                    <i class="fas fa-users" style="margin-right: 0.5rem;"></i>
+                    我們的團隊
+                </h3>
+                <ul style="list-style: none; padding-left: 1rem;">
+                    <li style="padding: 0.5rem 0;">
+                        <i class="fas fa-check-circle" style="color: #30caa0; margin-right: 0.5rem;"></i>
+                        <span style="display: inline-block; border-bottom: 1px solid #ddd; padding-bottom: 0.25rem; color: #000;">
+                            註冊護士及護理員
+                        </span>
+                    </li>
+                    <li style="padding: 0.5rem 0;">
+                        <i class="fas fa-check-circle" style="color: #30caa0; margin-right: 0.5rem;"></i>
+                        <span style="display: inline-block; border-bottom: 1px solid #ddd; padding-bottom: 0.25rem; color: #000;">
+                            專業社工團隊
+                        </span>
+                    </li>
+                    <li style="padding: 0.5rem 0;">
+                        <i class="fas fa-check-circle" style="color: #30caa0; margin-right: 0.5rem;"></i>
+                        <span style="display: inline-block; border-bottom: 1px solid #ddd; padding-bottom: 0.25rem; color: #000;">
+                            物理治療師及職業治療師
+                        </span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="about-section" style="margin-bottom: 2rem;">
+                <h3 style="color: #30caa0; margin-bottom: 1rem;">
+                    <i class="fas fa-award" style="margin-right: 0.5rem;"></i>
+                    我們的成就
+                </h3>
+                <div class="table-responsive">
+                    <table style="border: 1px solid #ddd; border-collapse: separate; border-left: 0; border-radius: 1rem; border-spacing: 0px; width: 100%; overflow: hidden;">
+                        <thead style="background-color: #30caa0; color: white;">
+                            <tr>
+                                <th style="padding: 12px; border-left: 1px solid #30caa0;">年份</th>
+                                <th style="padding: 12px; border-left: 1px solid #30caa0;">獎項</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 12px; border-top: 1px solid #ddd; border-left: 1px solid #ddd;">2022</td>
+                                <td style="padding: 12px; border-top: 1px solid #ddd; border-left: 1px solid #ddd;">最佳長者護理中心金獎</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border-top: 1px solid #ddd; border-left: 1px solid #ddd;">2021</td>
+                                <td style="padding: 12px; border-top: 1px solid #ddd; border-left: 1px solid #ddd;">優質服務大獎</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border-top: 1px solid #ddd; border-left: 1px solid #ddd; border-bottom-left-radius: 1rem;">2020</td>
+                                <td style="padding: 12px; border-top: 1px solid #ddd; border-left: 1px solid #ddd; border-bottom-right-radius: 1rem;">傑出社區服務獎</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </section>
 </div>
 
-
-<div class="container mt-3" style="margin-left: 10px;">
-  
-      
-        <h2>「養心為念，如事至親」</h2>
-        <p>我們相信最高品質的服務來自對照護的專業，與及對被照顧者的同理心；同時我們亦理解家人對於交托長輩於外的忐忑和焦慮，是以養心園護理團隊以「養心為念，如事至親」為服務理念，力求以長者為本位去思考營運和服務方向，以專業的知識和技能，提供具尊嚴並有溫度的院舍服務。</p>
-        
-        <div class="image-container">
-          <img src="/static/img/aboutus/aboutus.jpg" alt="養心園護老院，政府甲一級安老院/老人院，24小時專業護理，註冊西醫定期到診"  width="400" height="450">
-        </div>
-        
-        <h2>服務長者對象</h2>
-        <ul>
-            <li>年屆65歲或以上之長者</li>
-            <li>年滿60至64歲，需要特別護理服務之長者</li>
-            <li>無傳染病及不良嗜好</li>
-            <li>體格及精神狀態適合群體生活</li>
-        </ul>
-
-        <div class="image-container">
-          <img src="/static/img/aboutus/aboutus2.jpg" alt="養心優質護老院，政府甲一級安老院/老人院，24小時專業護理，註冊西醫定期到診"  width="400" height="400">
-        </div>
-
-        <h2>專業護理團隊</h2>
-        <p>養心園的護理團隊均獲得香港政府認可專業資格並持有相關護理證書，團隊包括:</p>
-        <ul>
-            <li>註冊護士<sup>#</sup></li>
-            <li>登記護士<sup>#</sup></li>
-            <li>物理治療師<sup>#</sup></li>
-            <li>保健員</li>
-            <li>護理員及助理員</li>
-        </ul>
-        <p><sup>#適用於部份院舍</sup></p>
-
-        <div class="image-container">
-          <img src="/static/img/aboutus/ourteam.jpg" alt="舒適的環境、二十四小時專業與貼心的照護服務，以及精心設計的康樂活動"  width="500" height="300">
-        </div>
-
-        <h2>環境、二十四小時專業與貼心的照護服務，以及精心設計的康樂活動，有更好的生活品質。</h2>
- 
-</div>
-  
- 
 {% endblock %}

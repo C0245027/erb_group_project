@@ -81,8 +81,19 @@
                 </li>
 
                 <!-- 聯絡我們 -->
-                <li class="nav-item {% if 'contactus' in request.path %}active highlight{% endif %}" style="transition: all 0.3s ease;">
+                <!--li class="nav-item {% if 'contactus' in request.path %}active highlight{% endif %}" style="transition: all 0.3s ease;">
                     <a class="nav-link" href="{% url 'contactus' %}" aria-label="聯絡我們" aria-current="{% if 'contactus' in request.path %}page{% else %}false{% endif %}" style="color: inherit; text-decoration: none;">
+                        <i class="fas fa-info-circle"></i> 聯絡我們
+                    </a>
+                </li-->
+                <!--li class="nav-item {% if 'contactus' in request.path %}active highlight{% endif %}" style="transition: all 0.3s ease; background-color: #86236e;">
+                    <a class="nav-link" href="{% url 'contactus' %}" aria-label="聯絡我們" aria-current="{% if 'contactus' in request.path %}page{% else %}false{% endif %}" style="color: white; text-decoration: none;">
+                        <i class="fas fa-info-circle"></i> 聯絡我們
+                    </a>
+                </li-->
+                <!-- 聯絡我們 -->
+                <li class="nav-item {% if 'contactus' in request.path %}active highlight{% endif %}" style="transition: all 0.3s ease; background-color: #86236e;">
+                    <a class="nav-link" href="{% url 'contactus' %}" aria-label="聯絡我們" aria-current="{% if 'contactus' in request.path %}page{% else %}false{% endif %}" style="color: white; text-decoration: none;">
                         <i class="fas fa-info-circle"></i> 聯絡我們
                     </a>
                 </li>

@@ -3,7 +3,6 @@
 {% block title %} | 聯絡我們 {% endblock %}
 {% block content %}
 
- 
 <div class="container">
     <div class="view-content">
         <div class="views-row">
@@ -16,46 +15,66 @@
             <br>
             <div class="row">
                 <div class="col-md-6">
-                    <h3>有安排家中長者入住護老院舍的疑問？</h3>
-                    <p>歡迎隨時聯絡我們查詢。同時，您亦可以預約時間作現場參觀，深入了解一下專業護老團隊及護老院舍的運作。</p>
+                    <section class="section mx-auto" style="max-width: 800px; background: #fff; padding: 1rem; margin-bottom: 0.5rem; border-radius: 2rem;">
+                        <h2 style="color: #000; margin-bottom: 1.5rem; padding: 1rem;">
+                            <i class="fas fa-question-circle" style="color: #30caa0; margin-right: 0.5rem;"></i>
+                            有安排家中長者入住護老院舍的疑問？
+                        </h2>
+                        <p style="font-size: 1.1rem; line-height: 1.6; color: #000;">
+                            歡迎隨時聯絡我們查詢。同時，您亦可以預約時間作現場參觀，深入了解一下專業護老團隊及護老院舍的運作。
+                        </p>
 
-                    <h3>一般查詢</h3>
-                    <div class="email">
-                        <a href="mailto:info@elderly.com.hk">info@elderly.com.hk</a>
-                    </div>
-                    <br>
+                        <h3 style="color: #000; margin-bottom: 1rem;">
+                            <i class="fas fa-envelope" style="color: #30caa0; margin-right: 0.5rem;"></i>
+                            一般查詢
+                        </h3>
+                        <div class="email">
+                            <a href="mailto:info@elderly.com.hk" style="color: #30caa0; text-decoration: none;">
+                                info@elderly.com.hk
+                            </a>
+                        </div>
+                    </section>
 
-                    <div class="intro">
-                        <h2>關於我們的長者之家</h2>
-                        <p>我們的長者之家致力於提供一個安全、舒適和關愛的環境，讓長者享受他們的晚年生活。我們的專業團隊會確保每位長者得到個人化的照顧和支持。</p>
-                    </div>
+                    <section class="section mx-auto" style="max-width: 800px; background: #fff; padding: 1rem; margin-bottom: 0.5rem; border-radius: 2rem;">
+                        <h2 style="color: #000; margin-bottom: 1.5rem; padding: 1rem;">
+                            <i class="fas fa-home" style="color: #30caa0; margin-right: 0.5rem;"></i>
+                            關於我們的長者之家
+                        </h2>
+                        <p style="font-size: 1.1rem; line-height: 1.6; color: #000;">
+                            我們的長者之家致力於提供一個安全、舒適和關愛的環境，讓長者享受他們的晚年生活。我們的專業團隊會確保每位長者得到個人化的照顧和支持。
+                        </p>
+                    </section>
                 </div>
 
                 <div class="col-md-6">
-                    <h2>聯絡我們</h2>
-                       
-      
-                       <form method="post" action="{% url 'contactus' %}">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label for="name">姓名</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="telephone">電話號碼</label>
-                            <input type="tel" class="form-control" id="telephone" name="telephone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">電郵地址</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="opinion">意見</label>
-                            <textarea class="form-control" id="opinion" name="opinion" rows="4" required></textarea>
-                        </div>
-                  
-                        <button type="submit" class="btn btn-secondary btn-lg">提交</button>
-                    </form>
+                    <section class="section mx-auto" style="max-width: 800px; background: #fff; padding: 1rem; margin-bottom: 0.5rem; border-radius: 2rem;">
+                        <h2 style="color: #000; margin-bottom: 1.5rem; padding: 1rem;">
+                            <i class="fas fa-comments" style="color: #30caa0; margin-right: 0.5rem;"></i>
+                            聯絡我們
+                        </h2>
+                        <form method="post" action="{% url 'contactus' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="name" style="color: #000;">姓名</label>
+                                <input type="text" class="form-control" id="name" name="name" required style="border-radius: 0.5rem;">
+                            </div>
+                            <div class="form-group">
+                                <label for="telephone" style="color: #000;">電話號碼</label>
+                                <input type="tel" class="form-control" id="telephone" name="telephone" required style="border-radius: 0.5rem;">
+                            </div>
+                            <div class="form-group">
+                                <label for="email" style="color: #000;">電郵地址</label>
+                                <input type="email" class="form-control" id="email" name="email" required style="border-radius: 0.5rem;">
+                            </div>
+                            <div class="form-group">
+                                <label for="opinion" style="color: #000;">意見</label>
+                                <textarea class="form-control" id="opinion" name="opinion" rows="4" required style="border-radius: 0.5rem;"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-secondary btn-lg" style="background-color: #30caa0; border: none; border-radius: 0.5rem; padding: 0.5rem 2rem;">
+                                提交
+                            </button>
+                        </form>
+                    </section>
                 </div>
             </div>
         </div>

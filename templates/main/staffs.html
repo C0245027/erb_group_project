@@ -4,60 +4,40 @@
 {% block title %} | 專業團隊 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h1 class="display-4 text-center mb-4">專業團隊</h1>
+<div class="container" style="padding: 2rem;">
+    <section class="section mx-auto" style="max-width: 1200px; background: #fff; padding: 2rem; margin: 0 auto 1rem; border-radius: 2rem;">
+        <h2 style="color: #000; margin-bottom: 1.5rem; font-size: 2.2rem; text-align: center;">
+            <i class="fas fa-users" style="color: #30caa0; margin-right: 0.5rem;"></i>
+            專業團隊
+        </h2>
 
-    <div class="row">
-        {% for staff in staffs %}
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    {% if staff.photo %}
-                        <img src="{{ staff.photo.url }}" class="card-img-top" alt="{{ staff.name }}">
-                    {% else %}
-                        <img src="{% static 'img/default-profile.png' %}" class="card-img-top" alt="Default Profile">
-                    {% endif %}
-                    
-                    <div class="card-body">
-                        <h5 class="card-title">{{ staff.name }}</h5>
-                        <p class="card-text" style="font-size: 18px;">
-                            <strong>職位：</strong>{{ staff.job_title }}<br>
-                            <strong>職責：</strong>{{ staff.job_duties }}<br> 
-                        </p>
+        <div class="row justify-content-center">
+            {% for staff in staffs %}
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 8px; border: none; height: 100%;">
+                        {% if staff.photo %}
+                            <img src="{{ staff.photo.url }}" class="card-img-top" alt="{{ staff.name }}" style="height: 300px; object-fit: contain; border-top-left-radius: 8px; border-top-right-radius: 8px; width: 100%;">
+                        {% else %}
+                            <img src="{% static 'img/default-profile.png' %}" class="card-img-top" alt="Default Profile" style="height: 300px; object-fit: contain; border-top-left-radius: 8px; border-top-right-radius: 8px; width: 100%;">
+                        {% endif %}
+                        
+                        <div class="card-body" style="padding: 1.5rem;">
+                            <h5 class="card-title" style="color: #30caa0; margin-bottom: 15px; font-size: 1.6rem;">{{ staff.name }}</h5>
+                            <p class="card-text" style="font-size: 1.2rem; line-height: 1.6;">
+                                <strong style="color: #555; font-size: 1.5rem; ">{{ staff.job_title }}</strong><br><br>
+                                <span style="color: #666; font-size: 1.1rem;">
+                                    {{ staff.job_duties|linebreaksbr }}
+                                </span>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% empty %}
-            <div class="col-12 text-center">
-                <p>暫無員工資料</p>
-            </div>
-        {% endfor %}
-    </div>
+            {% empty %}
+                <div class="col-12 text-center">
+                    <p style="font-size: 1.4rem; color: #000;">暫無員工資料</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
 </div>
-
-<style>
-    .card {
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        border-radius: 8px;
-        border: none;
-        height: 100%;
-    }
-    .card-img-top {
-        height: 300px; /* Increased height for larger photo */
-        object-fit: contain; /* Ensure the entire image is visible */
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-        width: 100%; /* Ensure the image takes the full width of the card */
-    }
-    .card-title {
-        color: #30caa0;
-        margin-bottom: 15px;
-    }
-    .card-text {
-        font-size: 0.9rem;
-        line-height: 1.6;
-    }
-    .card-text strong {
-        color: #555;
-    }
-</style>
 {% endblock %}
