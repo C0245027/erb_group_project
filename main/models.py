@@ -4,15 +4,18 @@ from django.core.validators import EmailValidator, MinValueValidator, MaxValueVa
 from django.utils import timezone  
 from django.db.models import Max
 
-
-class Staff(AbstractUser):
-    # Extending the default User model with additional fields
+class Staff(models.Model):
+    # Define fields for the Staff model
+    first_name = models.CharField(max_length=30)  # First name
+    last_name = models.CharField(max_length=30)  # Last name
+    username = models.CharField(max_length=30)  # username
+    email = models.EmailField(validators=[EmailValidator()], unique=True)  # Unique email
     age = models.PositiveIntegerField(null=True, blank=True)  # Optional age field
-    job_title = models.CharField(max_length=200)  # Job title field
-    job_duties = models.TextField(blank=True)  # Optional job duties field
-    phone = models.CharField(max_length=20, blank=True)  # Optional phone number, must be unique
-    home_address = models.TextField(blank=True)  # Optional home address field
-    photo = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)  # Optional photo upload
+    job_title = models.CharField(max_length=200,null=True)  # Job title field
+    job_duties = models.TextField(null=True, blank=True)  # Optional job duties field
+    phone = models.CharField(max_length=20, null=True, blank=True)  # Optional phone nu``mber
+    home_address = models.TextField(null=True, blank=True)  # Optional home address field
+    photo = models.ImageField(upload_to='photos/%Y/%m/%d/', null=True,  blank=True)  # Optional photo upload
     hire_date = models.DateTimeField(default=timezone.now, blank=True)  # Hire date with default to now
     
     STAFF_TYPE_CHOICES = [
@@ -21,26 +24,13 @@ class Staff(AbstractUser):
     ]
     staff_type = models.CharField(max_length=10, choices=STAFF_TYPE_CHOICES, default='General')  # Staff type choices
 
-    # Adding related_name to avoid clashes with the default User model
-    groups = models.ManyToManyField(
-        Group,
-        related_name='staff_groups',  # Unique related name for groups
-        blank=True
-    )
-    user_permissions = models.ManyToManyField(
-        Permission,
-        related_name='staff_user_permissions',  # Unique related name for user permissions
-        blank=True
-    )
-
     class Meta:
         db_table = 'staff'  # Set the database table name to 'staff'
         verbose_name = 'Staff'  # Singular name in admin
         verbose_name_plural = 'Staff'  # Plural name in admin
 
     def __str__(self):
-        return self.username  # Returns the username of the user
-
+        return f"{self.username} - {self.job_title}"  # Returns full name and job title
 
 class Meal(models.Model):
     id = models.AutoField(primary_key=True)
@@ -68,6 +58,9 @@ class Meal(models.Model):
         return f'Meal for day {self.day_of_month}'
 
     class Meta:
+        db_table='meal'
+        verbose_name = 'Meal'  # Singular name in admin
+        verbose_name_plural = 'Meal'  # Plural name in admin
         ordering = ['day_of_month']
 
 
@@ -91,6 +84,11 @@ class Price(models.Model):
         decimal_places=2,
         verbose_name='價格'
     )
+
+    class Meta:
+        db_table='price'
+        verbose_name = 'Price'  # Singular name in admin
+        verbose_name_plural = 'Price'  # Plural name in admin
 
     def __str__(self):
         return f"{self.get_product_type_display()} - ${self.price}"
