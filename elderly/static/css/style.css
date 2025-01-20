@@ -1,3 +1,18 @@
+/* 加大所有頁面文字 */
+body {
+  font-size: 1.2rem;  /* 加大 20% */
+}
+
+/* 加大標題 */
+h2 {
+  font-size: 2.4rem;  /* 加大 20% */
+}
+
+/* 加大表格內容 */
+td {
+  font-size: 1.2rem;  /* 加大 20% */
+}
+
 .custom-navbar {
     background-color: #30caa0 !important;  
     color: #d11654 !important; /* This will apply to the navbar itself */
@@ -151,28 +166,7 @@
 }
 
 
-/* FAQ Section Styling *//* FAQ Section Styling */
-.faq {
-  margin-bottom: 20px;
-  padding: 15px;
-  border-radius: 8px;
-  background-color: #f8f9fa;
-  transition: all 0.3s ease;
-}
 
-.faq h2 {
-  font-size: 0.95rem !important;
-  color: #b99930;
-  margin-bottom: 10px;
-  font-weight: 600;
-}
-
-.faq p {
-  font-size: 0.85rem !important;
-  color: #666666;
-  line-height: 1.6;
-  margin-bottom: 0;
-}
  
 .alert {
   background-color: #ca8c30; /* Custom background color */
