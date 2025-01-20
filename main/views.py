@@ -91,9 +91,7 @@ def contactus(request):
         except Exception as e:
             print('Error sending email:', e)
             messages.error(request, f'Error sending email: {e}')
-
-
-
+ 
         return redirect('index')    
 
     return render(request,'main/contactus.html')

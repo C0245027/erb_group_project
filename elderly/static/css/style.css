@@ -185,6 +185,11 @@
   color: white; /* Close button color */
 }
 
+
+.fade {
+  opacity: 0; /* Fade out */
+}
+
 /* 聯絡我們按鈕特別樣式 */
 .nav-item[style*="background-color: #86236e"] {
   background-color: #86236e !important;
