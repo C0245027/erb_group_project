@@ -140,7 +140,7 @@ def opinion(request):
 
             # Validate required fields
             required_fields = [contact, checkin, checkout, 
-                             accommodation, dinning, staff]
+                            accommodation, dinning, staff]
             
             if not all(required_fields):
                 messages.error(request, '請填寫所有必需欄位。')

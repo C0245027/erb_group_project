@@ -5,101 +5,97 @@
 {% block title %} | 收費表 {% endblock %}
 
 {% block content %}
- 
+<div class="container" style="padding: 2rem;">
+    <section class="section mx-auto" style="max-width: 1200px; background: #fff; padding: 2rem; margin: 0 auto 1rem; border-radius: 2rem;">
+        <h2 style="color: #000; margin-bottom: 1.5rem; font-size: 2.2rem; ">
+            <i class="fas fa-money-bill-wave" style="color: #30caa0; margin-right: 0.5rem;"></i>
+            收費表
+        </h2>
 
-
-
-
-<div class="container mt-3" style="margin-left: 8px;">
-    <div class="list-item"><strong>護理服務費用</strong>：根據老人的健康狀況和需要的護理程度，這部分費用可能會有所不同。需要專業護理的老人通常需要支付更高的費用。</div>
-    <br>
-    <div class="list-item"><strong>餐飲費用</strong>：安老院會提供餐飲服務，這部分費用通常包含在總費用中。</div>
-    <br>
-    <div class="list-item"><strong>額外服務費用</strong>：如康樂活動、物理治療、醫療服務等，這些可能需要額外收費。</div>
-    <br>
- 
-
-    <h1 class="display-4 text-center mb-4">收費表</h1>
-
-    <!-- 床位收費 -->
-    <div class="card mb-4">
-        <div class="card-header bg-primary text-white">
-            <h3 class="mb-0">床位收費</h3>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>項目</th>
-                            <th>收費</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for item in prices %}
-                            {% if item.product_type == 'Bed' %}
-                                <tr>
-                                    <td>{{ item.description }}</td>
-                                    <td>HK${{ item.price|floatformat:2|add:""|intcomma }}</td>
-                                </tr>
-                            {% endif %}
-                        {% endfor %}
-                    </tbody>
-                </table>
+        <!-- 費用說明 -->
+        <div style="margin-bottom: 2rem;">
+            <div style="font-size: 1.1rem; line-height: 1.6; color: #000; margin-bottom: 1rem;">
+                <i class="fas fa-info-circle" style="color: #30caa0; margin-right: 0.5rem;"></i>
+                以下係我哋嘅收費詳情：
             </div>
+            <ul style="list-style: none; padding-left: 1rem;">
+                <li style="padding: 0.5rem 0;">
+                    <i class="fas fa-check-circle" style="color: #30caa0; margin-right: 0.5rem;"></i>
+                    <span style="display: inline-block; border-bottom: 1px solid #ddd; padding-bottom: 0.25rem; color: #000;">
+                        <strong>護理服務費用</strong>：根據老人嘅健康狀況同需要嘅護理程度，呢部分費用可能會有所不同
+                    </span>
+                </li>
+                <li style="padding: 0.5rem 0;">
+                    <i class="fas fa-check-circle" style="color: #30caa0; margin-right: 0.5rem;"></i>
+                    <span style="display: inline-block; border-bottom: 1px solid #ddd; padding-bottom: 0.25rem; color: #000;">
+                        <strong>餐飲費用</strong>：安老院會提供餐飲服務，呢部分費用通常包含喺總費用中
+                    </span>
+                </li>
+                <li style="padding: 0.5rem 0;">
+                    <i class="fas fa-check-circle" style="color: #30caa0; margin-right: 0.5rem;"></i>
+                    <span style="display: inline-block; border-bottom: 1px solid #ddd; padding-bottom: 0.25rem; color: #000;">
+                        <strong>額外服務費用</strong>：如康樂活動、物理治療、醫療服務等，呢啲可能需要額外收費
+                    </span>
+                </li>
+            </ul>
         </div>
-    </div>
 
-    <!-- 其他收費 -->
-    <div class="card">
-        <div class="card-header bg-info text-white">
-            <h3 class="mb-0">其他收費</h3>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>項目</th>
-                            <th>收費</th>
+<!-- 床位收費 -->
+<div style="margin-bottom: 2rem;">
+    <h3 style="color: #30caa0; margin-bottom: 1rem; font-size: 1.6rem;">
+        <i class="fas fa-bed" style="margin-right: 0.5rem;"></i>
+        床位收費
+    </h3>
+    <div class="table-responsive" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;">
+        <table class="table" style="margin-bottom: 0;">
+            <thead style="background-color: #30caa0;">
+                <tr>
+                    <th style="padding: 0.8rem; font-size: 1rem; color: white;">項目</th>
+                    <th style="padding: 0.8rem; font-size: 1rem; color: white;">收費</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in prices %}
+                    {% if item.product_type == 'Bed' %}
+                        <tr style="transition: all 0.3s ease; background-color: white;">
+                            <td style="padding: 0.8rem; font-size: 0.95rem; color: #666;">{{ item.description }}</td>
+                            <td style="padding: 0.8rem; font-size: 0.95rem; color: #30caa0; font-weight: 500;">HK${{ item.price|floatformat:2|add:""|intcomma }}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {% for item in prices %}
-                            {% if item.product_type == 'Others' %}
-                                <tr>
-                                    <td>{{ item.description }}</td>
-                                    <td>HK${{ item.price|floatformat:2|add:""|intcomma }}</td>
-                                </tr>
-                            {% endif %}
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
 
-
-
-<style>
-    .card {
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        border-radius: 8px;
-        border: none;
-    }
-    .card-header {
-        border-top-left-radius: 8px !important;
-        border-top-right-radius: 8px !important;
-    }
-    .table th {
-        background-color: #f8f9fa;
-    }
-    .bg-primary {
-        background-color: #30caa0 !important;
-    }
-    .bg-info {
-        background-color: #17a2b8 !important;
-    }
-</style>
+<!-- 其他收費 -->
+<div>
+    <h3 style="color: #17a2b8; margin-bottom: 1rem; font-size: 1.6rem;">
+        <i class="fas fa-list-alt" style="margin-right: 0.5rem;"></i>
+        其他收費
+    </h3>
+    <div class="table-responsive" style="box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;">
+        <table class="table" style="margin-bottom: 0;">
+            <thead style="background-color: #17a2b8;">
+                <tr>
+                    <th style="padding: 0.8rem; font-size: 1rem; color: white;">項目</th>
+                    <th style="padding: 0.8rem; font-size: 1rem; color: white;">收費</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in prices %}
+                    {% if item.product_type == 'Others' %}
+                        <tr style="transition: all 0.3s ease; background-color: white;">
+                            <td style="padding: 0.8rem; font-size: 0.95rem; color: #666;">{{ item.description }}</td>
+                            <td style="padding: 0.8rem; font-size: 0.95rem; color: #17a2b8; font-weight: 500;">HK${{ item.price|floatformat:2|add:""|intcomma }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+    </section>
+</div>
 {% endblock %}

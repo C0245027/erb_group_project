@@ -1,38 +1,200 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %} | application {% endblock %}
+
+{% block title %} | 預約參觀 {% endblock %}
+
 {% block content %}
+<div class="container" style="padding: 2rem;">
+    <section class="section mx-auto" style="max-width: 800px; background: #fff; padding: 2rem; margin: 0 auto 1rem; border-radius: 2rem;">
+        <h2 style="color: #000; margin-bottom: 1.5rem; font-size: 2.2rem;">
+            <i class="fas fa-calendar-alt" style="color: #30caa0; margin-right: 0.5rem;"></i>
+            預約參觀
+        </h2>
 
+        <form method="POST" novalidate class="needs-validation">
+            {% csrf_token %}
+            
+            <!-- 基本資料 -->
+            <div style="margin-bottom: 2rem;">
+                <h3 style="color: #30caa0; margin-bottom: 1rem; font-size: 1.6rem;">
+                    <i class="fas fa-user" style="margin-right: 0.5rem;"></i>
+                    基本資料
+                </h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                    <div>
+                        <label for="name" style="display: block; margin-bottom: 0.5rem; color: #666;">姓名 *</label>
+                        <input type="text" id="name" name="name" required
+                            style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                        <div class="invalid-feedback" style="color: #dc3545; font-size: 0.9rem; margin-top: 0.25rem;">
+                            請輸入姓名
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="email" style="display: block; margin-bottom: 0.5rem; color: #666;">電子郵件 *</label>
+                        <input type="email" id="email" name="email" required
+                            style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                        <div class="invalid-feedback" style="color: #dc3545; font-size: 0.9rem; margin-top: 0.25rem;">
+                            請輸入有效的電子郵件地址
+                        </div>
+                    </div>
+                </div>
 
-<div class="container mt-5">
-    <p class="block-styled-text">預約參觀</p>
+                <div style="margin-top: 1rem;">
+                    <label for="phone" style="display: block; margin-bottom: 0.5rem; color: #666;">電話號碼 *</label>
+                    <input type="tel" id="phone" name="phone" required
+                        style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                    <div class="invalid-feedback" style="color: #dc3545; font-size: 0.9rem; margin-top: 0.25rem;">
+                        請輸入電話號碼
+                    </div>
+                </div>
+            </div>
+
+            <!-- 參觀資料 -->
+            <div style="margin-bottom: 2rem;">
+                <h3 style="color: #30caa0; margin-bottom: 1rem; font-size: 1.6rem;">
+                    <i class="fas fa-calendar-check" style="margin-right: 0.5rem;"></i>
+                    參觀資料
+                </h3>
+                
+                <div>
+                    <label for="application_message" style="display: block; margin-bottom: 0.5rem; color: #666;">留言 *</label>
+                    <textarea id="application_message" name="application_message" required
+                        style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; min-height: 150px;"></textarea>
+                    <div class="invalid-feedback" style="color: #dc3545; font-size: 0.9rem; margin-top: 0.25rem;">
+                        請輸入留言內容
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" 
+                style="width: 100%; padding: 1rem; background: #30caa0; color: #fff; border: none; border-radius: 8px; font-size: 1.1rem; cursor: pointer;">
+                提交申請
+            </button>
+        </form>
+    </section>
 </div>
-    
-<div class="container mt-3" style="margin-left: 10px;">
-  
-    <p class="mb-3">請填寫以下資料，我們會盡快與您聯絡。</p>
-     
-    <form method="post" action="{% url 'application' %}">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="name">姓名 *</label>
-            <input type="text" class="form-control" id="name" name="name" required>
-        </div>
-        <div class="form-group">
-            <label for="email">電子郵件 *</label>
-            <input type="email" class="form-control" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-            <label for="phone">電話號碼 *</label>
-            <input type="text" class="form-control" id="phone" name="phone" required>
-        </div>
-        <div class="form-group">
-            <label for="application_message">留言 *</label>
-            <textarea class="form-control" id="application_message" name="application_message" rows="4" required>我希望能夠安排一次參觀養心園安老院舍。請提供可用的日期和時間。謝謝 !</textarea>
-        </div>
-        <button type="submit" class="btn btn-secondary btn-lg">提交預約</button>
-    </form>
-</div>
 
+<script>
+    // 防抖函數
+    function debounce(func, wait = 300) {
+        let timeout;
+        return function(...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+    }
 
+    // 表單提交處理
+    document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        if (!validateForm()) {
+            return;
+        }
+
+        alert('感謝您的申請！我們會盡快與您聯絡。');
+        this.submit();
+    });
+
+    // 實時驗證功能
+    const inputs = document.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+        input.addEventListener('blur', () => {
+            input.classList.add('touched');
+            validateField(input);
+        });
+
+        input.addEventListener('input', debounce(() => {
+            if (input.classList.contains('touched')) {
+                validateField(input);
+            }
+        }));
+    });
+
+    function validateForm() {
+        let isValid = true;
+        
+        inputs.forEach(input => {
+            input.classList.add('touched');
+            if (!validateField(input)) {
+                isValid = false;
+            }
+        });
+
+        if (!isValid) {
+            alert('請填寫所有必填欄位');
+        }
+
+        return isValid;
+    }
+
+    function validateField(input) {
+        let isValid = true;
+        
+        if (!input.classList.contains('touched')) {
+            clearError(input);
+            return true;
+        }
+
+        switch(input.type) {
+            case 'email':
+                isValid = validateEmail(input.value);
+                if (!isValid) {
+                    showError(input, '請輸入有效的電子郵件地址');
+                }
+                break;
+            case 'tel':
+                isValid = input.value.trim().length >= 8;
+                if (!isValid) {
+                    showError(input, '請輸入有效的電話號碼');
+                }
+                break;
+            case 'textarea':
+                isValid = input.value.trim().length >= 10;
+                if (!isValid) {
+                    showError(input, '留言內容至少需要10個字');
+                }
+                break;
+            default:
+                isValid = input.value.trim() !== '';
+                if (!isValid) {
+                    showError(input, '此欄位為必填');
+                }
+        }
+
+        if (isValid) {
+            clearError(input);
+        }
+
+        return isValid;
+    }
+
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+    function showError(input, message) {
+        const formControl = input.parentElement;
+        const errorDiv = formControl.querySelector('.invalid-feedback');
+        
+        input.style.borderColor = '#dc3545';
+        errorDiv.textContent = message;
+        errorDiv.style.display = 'block';
+    }
+
+    function clearError(input) {
+        const formControl = input.parentElement;
+        const errorDiv = formControl.querySelector('.invalid-feedback');
+        
+        input.style.borderColor = '#ddd';
+        errorDiv.textContent = '';
+        errorDiv.style.display = 'none';
+    }
+
+    // 自動聚焦第一個輸入框
+    document.querySelector('input').focus();
+</script>
 {% endblock %}

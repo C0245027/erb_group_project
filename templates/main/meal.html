@@ -1,60 +1,54 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %} | 老人營養餐單 {% endblock %}
+{% block title %} | 營養餐單 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <h1 class="display-4 text-center mb-4">當月餐單</h1>
-</div>
+<div class="container">
+    <section class="section mx-auto" style="max-width: 1200px; background: #fff; padding: 2rem; margin: 1rem auto; border-radius: 2rem;">
+        <h2 style="color: #000; margin-bottom: 1.5rem; font-size: 2.2rem;">
+            <i class="fas fa-utensils" style="color: #30caa0; margin-right: 0.5rem;"></i>
+            當月餐單
+        </h2>
 
-<div class="container mt-3">
-    <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
+        <div class="table-responsive">
+            <table style="
+    --border: 1px solid #ddd;
+    border-radius: 1rem;
+    border-spacing: 0;
+    border-collapse: separate;
+    border: var(--border);
+    overflow: hidden;
+    width: 100%;
+">
+    <thead style="background-color: #30caa0; color: white;">
+        <tr>
+            <th style="padding: 12px; border-left: 1px solid #30caa0;">日期</th>
+            <th style="padding: 12px; border-left: 1px solid #30caa0;">星期</th>
+            <th style="padding: 12px; border-left: 1px solid #30caa0;">早餐</th>
+            <th style="padding: 12px; border-left: 1px solid #30caa0;">午餐</th>
+            <th style="padding: 12px; border-left: 1px solid #30caa0;">下午茶</th>
+            <th style="padding: 12px; border-left: 1px solid #30caa0;">晚餐</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for meal in meals %}
             <tr>
-                <th>日期</th>
-                <th>星期</th>
-                <th>早餐</th>
-                <th>午餐</th>
-                <th>下午茶</th>
-                <th>晚餐</th>
+                <td style="padding: 12px; border-top: var(--border); border-left: var(--border);">{% now "Y年m月" %}{{ meal.day_of_month }}日</td>
+                <td style="padding: 12px; border-top: var(--border); border-left: var(--border);">{{ meal.weekday }}</td>
+                <td style="padding: 12px; border-top: var(--border); border-left: var(--border);">{{ meal.breakfast_menu }}</td>
+                <td style="padding: 12px; border-top: var(--border); border-left: var(--border);">{{ meal.lunch_menu }}</td>
+                <td style="padding: 12px; border-top: var(--border); border-left: var(--border);">{{ meal.teatime_menu }}</td>
+                <td style="padding: 12px; border-top: var(--border); border-left: var(--border);">{{ meal.dinner_menu }}</td>
             </tr>
-        </thead>
-        <tbody>
-            {% for meal in meals %}
-             
-                <tr>
-                    <td>{% now "Y年m月" %}{{ meal.day_of_month }}日</td>
-                    <td>{{ meal.weekday }}</td>
-
-                    <td>{{ meal.breakfast_menu }}</td>
-                    <td>{{ meal.lunch_menu }}</td>
-                    <td>{{ meal.teatime_menu }}</td>
-                    <td>{{ meal.dinner_menu }}</td>
-                </tr>
-            {% empty %}
-                <tr>
-                    <td colspan="5" class="text-center">暫無餐單資料</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+        {% empty %}
+            <tr>
+                <td colspan="6" style="padding: 12px; border-top: var(--border); border-left: var(--border); text-align: center;">暫無餐單資料</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+        </div>
+    </section>
 </div>
-
-<style>
-    .table thead th {
-        background-color: #30caa0;
-        color: white;
-    }
-    .table tbody tr:nth-child(odd) {
-        background-color: #f8f9fa;
-    }
-    .table tbody tr:nth-child(even) {
-        background-color: #ffffff;
-    }
-    .table td, .table th {
-        padding: 12px;
-        vertical-align: middle;
-    }
-</style>
 {% endblock %}

@@ -2,69 +2,75 @@
 {% load static %}
 {% block title %} | 預約入住 {% endblock %}
 {% block content %}
- 
-    <div class="container mt-5">
-        <p class="block-styled-text">預約入住</p>
-    </div>
 
+<div class="container">
+    <section class="section mx-auto" style="max-width: 800px; background: #fff; padding: 2rem; margin-bottom: 1rem; border-radius: 2rem;">
+        <h2 style="color: #000; margin-bottom: 1.5rem;">
+            <i class="fas fa-calendar-alt" style="color: #30caa0; margin-right: 0.5rem;"></i>
+            預約入住
+        </h2>
+        
+        <p style="font-size: 1.1rem; line-height: 1.6; color: #000; margin-bottom: 2rem;">
+            請填寫以下資料，我們會盡快與您聯絡。
+        </p>
 
-<div class="container mt-3" style="margin-left: 10px;">
- 
-  
-    <p class="mb-3">請填寫以下資料，我們會盡快與您聯絡。</p>
-    
-    <form method="post" action="{% url 'booking' %}">
-        {% csrf_token %}
-        <div class="form-group mb-4">
-            <label for="name">姓名 *</label>
-            <input type="text" class="form-control" id="name" name="name" required>
-        </div>
-        <div class="form-group">
-            <label for="age">年齡 *</label>
-            <input type="number" class="form-control" id="age" name="age" required>
-        </div>
-        <div class="form-group">
-            <label for="gender">性別 *</label>
-            <select class="form-control" id="gender" name="gender" required>
-                <option value="">請選擇</option>
-                <option value="男">男</option>
-                <option value="女">女</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="email">電子郵件 *</label>
-            <input type="email" class="form-control" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-            <label for="address">地址 *</label>
-            <input type="text" class="form-control" id="address" name="address" required>
-        </div>
-        <div class="form-group">
-            <label for="phone">電話號碼 *</label>
-            <input type="text" class="form-control" id="phone" name="phone" required>
-        </div>
-        <div class="form-group">
-            <label for="medicalHistory">病史 *</label>
-            <textarea class="form-control" id="medicalHistory" name="medicalHistory" rows="4" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="emergencyContact">緊急聯絡人 *</label>
-            <input type="text" class="form-control" id="emergencyContact" name="emergencyContact" required>
-        </div>
-        <div class="form-group">
-            <label for="relationship">與緊急聯絡人關係 *</label>
-            <input type="text" class="form-control" id="relationship" name="relationship" required>
-        </div>
-        <div class="form-group mb-4">
-            <label for="stayDuration">預計入住日期 *</label>
-            <input type="date" 
-                   class="form-control" 
-                   id="stayDuration" 
-                   name="stayDuration" 
-                   min="<?php echo date('Y-m-d'); ?>"
-                   required>
-        </div>
-        <button type="submit" class="btn btn-secondary btn-lg">提交預約</button>
-    </form>
+        <form method="post" action="{% url 'booking' %}">
+            {% csrf_token %}
+            <div class="form-group mb-4">
+                <label for="name" style="color: #000; font-size: 1.1rem;">姓名 *</label>
+                <input type="text" class="form-control" id="name" name="name" required style="border-radius: 0.5rem; padding: 0.5rem;">
+            </div>
+            <div class="form-group mb-4">
+                <label for="age" style="color: #000; font-size: 1.1rem;">年齡 *</label>
+                <input type="number" class="form-control" id="age" name="age" required style="border-radius: 0.5rem; padding: 0.5rem;">
+            </div>
+            <div class="form-group mb-4">
+                <label for="gender" style="color: #000; font-size: 1.1rem;">性別 *</label>
+                <select class="form-control" id="gender" name="gender" required style="border-radius: 0.5rem; padding: 0.5rem;">
+                    <option value="">請選擇</option>
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+            </div>
+            <div class="form-group mb-4">
+                <label for="email" style="color: #000; font-size: 1.1rem;">電子郵件 *</label>
+                <input type="email" class="form-control" id="email" name="email" required style="border-radius: 0.5rem; padding: 0.5rem;">
+            </div>
+            <div class="form-group mb-4">
+                <label for="address" style="color: #000; font-size: 1.1rem;">地址 *</label>
+                <input type="text" class="form-control" id="address" name="address" required style="border-radius: 0.5rem; padding: 0.5rem;">
+            </div>
+            <div class="form-group mb-4">
+                <label for="phone" style="color: #000; font-size: 1.1rem;">電話號碼 *</label>
+                <input type="text" class="form-control" id="phone" name="phone" required style="border-radius: 0.5rem; padding: 0.5rem;">
+            </div>
+            <div class="form-group mb-4">
+                <label for="medicalHistory" style="color: #000; font-size: 1.1rem;">病史 *</label>
+                <textarea class="form-control" id="medicalHistory" name="medicalHistory" rows="4" required style="border-radius: 0.5rem; padding: 0.5rem;"></textarea>
+            </div>
+            <div class="form-group mb-4">
+                <label for="emergencyContact" style="color: #000; font-size: 1.1rem;">緊急聯絡人 *</label>
+                <input type="text" class="form-control" id="emergencyContact" name="emergencyContact" required style="border-radius: 0.5rem; padding: 0.5rem;">
+            </div>
+            <div class="form-group mb-4">
+                <label for="relationship" style="color: #000; font-size: 1.1rem;">與緊急聯絡人關係 *</label>
+                <input type="text" class="form-control" id="relationship" name="relationship" required style="border-radius: 0.5rem; padding: 0.5rem;">
+            </div>
+            <div class="form-group mb-4">
+                <label for="stayDuration" style="color: #000; font-size: 1.1rem;">預計入住日期 *</label>
+                <input type="date" 
+                       class="form-control" 
+                       id="stayDuration" 
+                       name="stayDuration" 
+                       min="<?php echo date('Y-m-d'); ?>"
+                       required
+                       style="border-radius: 0.5rem; padding: 0.5rem;">
+            </div>
+            <button type="submit" class="btn btn-secondary btn-lg" style="background-color: #30caa0; border: none; border-radius: 0.5rem; padding: 0.75rem 1.5rem; font-size: 1.1rem;">
+                提交預約
+            </button>
+        </form>
+    </section>
 </div>
+
 {% endblock %}

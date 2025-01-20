@@ -1,265 +1,284 @@
-    {% extends "base.html" %}
-    {% load static %}
+{% extends "base.html" %}
+{% load static %}
 
-    {% block title %} | 客戶意見 {% endblock %}
+{% block title %} | 意見回饋 {% endblock %}
 
-    {% block content %}
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="card shadow-sm">
-                    <div class="card-header" style="background-color: #ca8c30; color: white;">
-                        <h4 class="mb-0">客戶意見</h4>
+{% block content %}
+<div class="container" style="padding: 2rem;">
+    <section class="section mx-auto" style="max-width: 800px; background: #fff; padding: 2rem; margin: 0 auto 1rem; border-radius: 2rem;">
+        <h2 style="color: #000; margin-bottom: 1.5rem; font-size: 2.2rem;">
+            <i class="fas fa-comment-dots" style="color: #30caa0; margin-right: 0.5rem;"></i>
+            意見回饋
+        </h2>
+
+        <form method="POST" action="{% url 'opinion' %}" novalidate class="needs-validation">
+            {% csrf_token %}
+            
+            <!-- 基本資料 -->
+            <div style="margin-bottom: 2rem;">
+                <h3 style="color: #30caa0; margin-bottom: 1rem; font-size: 1.6rem;">
+                    <i class="fas fa-user" style="margin-right: 0.5rem;"></i>
+                    基本資料
+                </h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                    <div>
+                        <label for="name" style="display: block; margin-bottom: 0.5rem; color: #666;">姓名 *</label>
+                        <input type="text" id="name" name="name" required
+                            style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                        <div class="invalid-feedback" style="color: #dc3545; font-size: 0.9rem; margin-top: 0.25rem;">
+                            請輸入姓名
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <form method="post" action="{% url 'opinion' %}" class="needs-validation" novalidate onsubmit="return checkSelectedValue()">
-                            {% csrf_token %}
-                            
-                            <div class="row mb-4">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="name" class="form-label">姓名</label>
-                                        <input type="text" class="form-control" id="name" name="name">
-                                        
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="age" class="form-label">年齡</label>
-                                        <input type="number" class="form-control" id="age" name="age">
-                                        
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="gender" class="form-label">性別</label>
-                                        <select class="form-select" id="gender" name="gender">
-                                            <option value="">請選擇</option>
-                                            <option value="男">男</option>
-                                            <option value="女">女</option>
-                                        </select>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mb-4">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="contact" class="form-label">電子郵件 *</label>
-                                        <input type="email" class="form-control" id="contact" name="contact" required>
-                                        <div class="invalid-feedback">請輸入有效的電子郵件地址</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="checkin" class="form-label">入住時間 *</label>
-                                        <input type="date" class="form-control" id="checkin" name="checkin" required>
-                                        <div class="invalid-feedback">請輸入入住時間</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-4">
-                                <div class="col-md-6 offset-md-6"> <!-- This will shift the column to the right -->
-                                    <div class="form-group">
-                                        <label for="checkout" class="form-label">退房時間 *</label>
-                                        <input type="date" class="form-control" id="checkout" name="checkout" required>
-                                        <div class="invalid-feedback">請輸入退房時間</div>
-                                        <div id="message_checkdate" class="alert alert-info" style="display: none;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            
-                            </div>
-
-                            <div class="mb-4">
-                                 
-                                <label class="form-label">服務評分 *</label>
-                                <div class="row g-3">
-                                    <div class="col-md-4">
-                                        
-                                        <label for="accommodation" class="form-label">住宿環境</label>
-                                        
-                                        <select class="form-select" id="accommodation" name="accommodation" required>
-                                            <option value="">請評分</option>
-                                            <option value="非常滿意">非常滿意</option>
-                                            <option value="滿意">滿意</option>
-                                            <option value="一般">一般</option>
-                                            <option value="不滿意">不滿意</option>
-                                            <option value="非常不滿意">非常不滿意</option>                                            
-                                        </select> 
-                                        <div id="message_accommodation" class="alert alert-info" style="display: none;"></div>
-                                       
-                                        
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="dinning" class="form-label">膳食服務</label>
-                                        <select class="form-select" id="dinning" name="dinning" required>
-                                            <option value="">請評分</option>
-                                            <option value="非常滿意">非常滿意</option>
-                                            <option value="滿意">滿意</option>
-                                            <option value="一般">一般</option>
-                                            <option value="不滿意">不滿意</option>
-                                            <option value="非常不滿意">非常不滿意</option>
-                                        </select>
-                                        <div id="message_dinning" class="alert alert-info" style="display: none;"></div>
-                                       
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="staff" class="form-label">員工服務</label>
-                                        <select class="form-select" id="staff" name="staff" required>
-                                            <option value="">請評分</option>
-                                            <option value="非常滿意">非常滿意</option>
-                                            <option value="滿意">滿意</option>
-                                            <option value="一般">一般</option>
-                                            <option value="不滿意">不滿意</option>
-                                            <option value="非常不滿意">非常不滿意</option>
-                                        </select>
-                                        <div id="message_staff" class="alert alert-info" style="display: none;"></div>
-                                       
-                                    </div>
-                                </div>
-                             
-                            </div>
-
-                            <div class="form-group mb-4">
-                                <label for="suggestion" class="form-label">其他意見</label>
-                                <textarea class="form-control" id="suggestion" name="suggestion" rows="4"></textarea>
-                                
-                            </div>
-
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-secondary btn-lg px-5">提交意見</button>
-                            </div>
-                        </form>
+                    
+                    <div>
+                        <label for="age" style="display: block; margin-bottom: 0.5rem; color: #666;">年齡 *</label>
+                        <input type="number" id="age" name="age" required
+                            style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                        <div class="invalid-feedback" style="color: #dc3545; font-size: 0.9rem; margin-top: 0.25rem;">
+                            請輸入年齡
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="gender" style="display: block; margin-bottom: 0.5rem; color: #666;">性別 *</label>
+                        <select id="gender" name="gender" required
+                            style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                            <option value="">請選擇</option>
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                            <option value="其他">其他</option>
+                        </select>
+                        <div class="invalid-feedback" style="color: #dc3545; font-size: 0.9rem; margin-top: 0.25rem;">
+                            請選擇性別
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="contact" style="display: block; margin-bottom: 0.5rem; color: #666;">電子郵件 *</label>
+                        <input type="email" id="contact" name="contact" required
+                            style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                        <div class="invalid-feedback" style="color: #dc3545; font-size: 0.9rem; margin-top: 0.25rem;">
+                            請輸入有效的電子郵件地址
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="checkin" style="display: block; margin-bottom: 0.5rem; color: #666;">入住時間 *</label>
+                        <input type="date" id="checkin" name="checkin" required
+                            style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                        <div class="invalid-feedback" style="color: #dc3545; font-size: 0.9rem; margin-top: 0.25rem;">
+                            請輸入入住時間
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="checkout" style="display: block; margin-bottom: 0.5rem; color: #666;">退房時間 *</label>
+                        <input type="date" id="checkout" name="checkout" required
+                            style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                        <div class="invalid-feedback" style="color: #dc3545; font-size: 0.9rem; margin-top: 0.25rem;">
+                            請輸入退房時間
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
- 
- 
-    <script>
-    
 
-    function checkSelectedValue() {
+            <!-- 服務評分 -->
+            <div style="margin-bottom: 2rem;">
+                <h3 style="color: #30caa0; margin-bottom: 1rem; font-size: 1.6rem;">
+                    <i class="fas fa-star" style="margin-right: 0.5rem;"></i>
+                    服務評分
+                </h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <div>
+                        <label for="accommodation" style="display: block; margin-bottom: 0.5rem; color: #666;">住宿環境 *</label>
+                        <select id="accommodation" name="accommodation" required
+                            style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                            <option value="">請評分</option>
+                            <option value="非常滿意">非常滿意</option>
+                            <option value="滿意">滿意</option>
+                            <option value="一般">一般</option>
+                            <option value="不滿意">不滿意</option>
+                            <option value="非常不滿意">非常不滿意</option>
+                        </select>
+                        <div class="invalid-feedback" style="color: #dc3545; font-size: 0.9rem; margin-top: 0.25rem;">
+                            請選擇住宿環境評分
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="dinning" style="display: block; margin-bottom: 0.5rem; color: #666;">膳食服務 *</label>
+                        <select id="dinning" name="dinning" required
+                            style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                            <option value="">請評分</option>
+                            <option value="非常滿意">非常滿意</option>
+                            <option value="滿意">滿意</option>
+                            <option value="一般">一般</option>
+                            <option value="不滿意">不滿意</option>
+                            <option value="非常不滿意">非常不滿意</option>
+                        </select>
+                        <div class="invalid-feedback" style="color: #dc3545; font-size: 0.9rem; margin-top: 0.25rem;">
+                            請選擇膳食服務評分
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="staff" style="display: block; margin-bottom: 0.5rem; color: #666;">員工服務 *</label>
+                        <select id="staff" name="staff" required
+                            style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
+                            <option value="">請評分</option>
+                            <option value="非常滿意">非常滿意</option>
+                            <option value="滿意">滿意</option>
+                            <option value="一般">一般</option>
+                            <option value="不滿意">不滿意</option>
+                            <option value="非常不滿意">非常不滿意</option>
+                        </select>
+                        <div class="invalid-feedback" style="color: #dc3545; font-size: 0.9rem; margin-top: 0.25rem;">
+                            請選擇員工服務評分
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <!-- 其他意見 -->
+            <div style="margin-bottom: 2rem;">
+                <label for="suggestion" style="display: block; margin-bottom: 0.5rem; color: #666;">其他意見</label>
+                <textarea id="suggestion" name="suggestion" rows="4"
+                    style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;"></textarea>
+            </div>
 
+            <button type="submit" 
+                style="background-color: #30caa0; color: white; padding: 0.8rem 2rem; border: none; border-radius: 8px; cursor: pointer;">
+                提交意見
+            </button>
+        </form>
+    </section>
+</div>
 
-        //check accommodation
-        var selectElement = document.getElementById("accommodation");
-        var selectedValue = selectElement.value;
-        var messageDiv = document.getElementById("message_accommodation");
-
- 
-        messageDiv.style.display = "none"; // Hide the message initially
-
- 
-        if (selectedValue === "") {
-            messageDiv.textContent = "請選擇服務評分"; // Set the message
-            messageDiv.style.display = "block"; // Show the message
-            messageDiv.className = "alert alert-danger"; // Set the class for error message 
-            return false; // Prevent form submission
-        }  
-
-        //check dinning
-
-        var selectElement = document.getElementById("dinning");
-        var selectedValue = selectElement.value;
-        var messageDiv = document.getElementById("message_dinning");
- 
-        messageDiv.style.display = "none"; // Hide the message initially
-
- 
-        if (selectedValue === "") {
-            messageDiv.textContent = "請選擇服務評分"; // Set the message
-            messageDiv.style.display = "block"; // Show the message
-            messageDiv.className = "alert alert-danger"; // Set the class for error message 
-            return false; // Prevent form submission
-        }  
- 
-        //check staff
-
-        var selectElement = document.getElementById("staff");
-        var selectedValue = selectElement.value;
-        var messageDiv = document.getElementById("message_staff");
- 
-        messageDiv.style.display = "none"; // Hide the message initially
-
- 
-        if (selectedValue === "") {
-            messageDiv.textContent = "請選擇服務評分"; // Set the message
-            messageDiv.style.display = "block"; // Show the message
-            messageDiv.className = "alert alert-danger"; // Set the class for error message 
-            return false; // Prevent form submission
-        }  
-
- 
-
-        // Check if checkout is earlier than checkin
-        var checkinDate = new Date(document.getElementById("checkin").value);
-        var checkoutDate = new Date(document.getElementById("checkout").value);
-
-        var messageDiv = document.getElementById("message_checkdate");
- 
-
-        if (checkoutDate < checkinDate) {
-            messageDiv.textContent = "退房時間不能早於入住時間"; // Set the message
-            messageDiv.style.display = "block"; // Show the message
-            messageDiv.className = "alert alert-danger"; // Set the class for error message 
-            return false; // Prevent form submission
-        }
-
-
-
+<!-- fix later -->  
+<!--script>
+    // 防抖函數
+    function debounce(func, wait = 300) {
+        let timeout;
+        return function(...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+        };
     }
+    
+    // 表單提交處理
+    document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault();
+    
+        if (!validateForm()) {
+            return;
+        }
+    
+        alert('感謝您的意見！我們會盡快處理。');
+        this.submit();
+    });
+    
+    const inputs = document.querySelectorAll('input, textarea, select');
+    inputs.forEach(input => {
+        input.addEventListener('blur', () => {
+            input.classList.add('touched');
+            validateField(input);
+        });
+    
+        input.addEventListener('input', debounce(() => {
+            if (input.classList.contains('touched')) {
+                validateField(input);
+            }
+        }));
+    });
+    
+    function validateForm() {
+        let isValid = true;
+    
+        inputs.forEach(input => {
+            input.classList.add('touched');
+            if (!validateField(input)) {
+                isValid = false;
+            }
+        });
+        return isValid;
+    }
+    
+    function validateField(input) {
+        let isValid = true;
+    
+        switch (input.type) {
+            case 'email':
+                isValid = validateEmail(input.value);
+                if (!isValid) {
+                    showError(input, '請輸入有效的電子郵件地址');
+                }
+                break;
+            case 'number':
+                isValid = input.value >= 0;
+                if (!isValid) {
+                    showError(input, '請輸入有效的年齡');
+                }
+                break;
+            case 'select-one':
+                isValid = input.value !== '';
+                if (!isValid) {
+                    showError(input, '請選擇' + input.parentElement.querySelector('label').innerText.replace(' *', ''));
+                }
+                break;
+            case 'textarea':
+                // 如果 textarea 有內容，先至進行驗證
+                if (input.value.trim().length > 0) {
+                    isValid = input.value.trim().length >= 10;
+                    if (!isValid) {
+                        showError(input, '意見內容至少需要10個字');
+                    }
+                } else {
+                    isValid = true;  // 如果冇內容，直接通過驗證
+                    clearError(input);  // 確保清除錯誤提示
+                }
+                break;
+            default:
+                isValid = input.value.trim() !== '';
+                if (!isValid) {
+                    showError(input, '此欄位為必填');
+                }
+        }
+    
+        if (isValid) {
+            clearError(input);
+        }
+    
+        return isValid;
+    }
+    
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    }
+    
+    function showError(input, message) {
+        const formControl = input.parentElement;
+        const errorDiv = formControl.querySelector('.invalid-feedback');
+    
+        input.style.borderColor = '#dc3545';
+        errorDiv.textContent = message;
+        errorDiv.style.display = 'block';
+    }
+    
+    function clearError(input) {
+        const formControl = input.parentElement;
+        const errorDiv = formControl.querySelector('.invalid-feedback');
+    
+        input.style.borderColor = '#ddd';
+        errorDiv.textContent = '';
+        errorDiv.style.display = 'none';
+    }
+    
+    // 自動聚焦第一個輸入框
+    document.querySelector('input').focus();
+</script-->
+    
 
-
- 
- 
-    
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function () {
-            'use strict'
-    
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.querySelectorAll('.needs-validation')
-    
-            // Loop over them and prevent submission
-            Array.prototype.slice.call(forms)
-                .forEach(function (form) {
-                    form.addEventListener('submit', function (event) {
-                        var isValid = true;
-                        
-                        // Check if required select elements are empty
-                        var requiredSelects = form.querySelectorAll('select[required]');
-                     
-                        requiredSelects.forEach(function (select) {
-                         console.log("Checking select:", select); // Log the select element
-                         
-                            if (select.value === "") {
-                                alert("請選擇服務評分");
-                                isValid = false;
-                                select.classList.add('is-invalid'); // Add Bootstrap invalid class
-                            } else {
-                             alert("hi2");
-                                select.classList.remove('is-invalid'); // Remove invalid class if valid
-                            }
-                        });
-    
-                        // If the form is not valid, prevent submission
-                        if (!form.checkValidity() || !isValid) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-    
-                        // Add the 'was-validated' class regardless of validity
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-        })()
-    </script>
-
-    
-    {% endblock %}
+{% endblock %}

@@ -1,43 +1,40 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %} | 院舍生活設施 {% endblock %}
+{% block title %} | 院舍設施 {% endblock %}
 {% block content %}
- 
-    <div class="container mt-5">
-        <p class="block-styled-text">生活設施</p>
-    </div>
 
+<div class="container">
+    <section class="section mx-auto" style="max-width: 800px; background: #fff; padding: 2rem; margin-bottom: 1rem; border-radius: 2rem;">
+        <h2 style="color: #000; margin-bottom: 1.5rem;">
+            <i class="fas fa-building" style="color: #30caa0; margin-right: 0.5rem;"></i>
+            院舍設施
+        </h2>
+        
+        <p style="font-size: 1.1rem; line-height: 1.6; color: #000;">
+            養心園坐擁優越地利，群山環繞、綠意盎然，無論喜歡面向翠綠景緻還是馬場景色，曦蕓居總能滿足你的要求。所有單位全部裝潢完善並附設露台/工作平台，適合個人、夫婦或家庭入住，並備有三種室內設計風格以供選擇:
+        </p>
 
-<div class="container mt-3" style="margin-left: 10px;">
- 
-    <br>
-    <h2>風格多樣 別具品味</h2>
-    <br>
-    <p class="lead">養心園坐擁優越地利，群山環繞、綠意盎然，無論喜歡面向翠綠景緻還是馬場景色，曦蕓居總能滿足你的要求。所有單位全部裝潢完善並附設露台/工作平台，適合個人、夫婦或家庭入住，並備有三種室內設計風格以供選擇:</p><br>
-    <h2>1. 花園</h2>
-    <div class="image-container">
-        <img src="/static/img/facilities/park.jpg" alt="A group of people watering plants" width="600" height="450">
-    </div>
-    <br>
-    <h2>2. 優閑區</h2>
-    <div class="image-container">
-        <img src="/static/img/facilities/living.jpg" alt="A room with a reception desk and tables" width="600" height="450">
-    </div>
-    <br>
-    <h2>2. 餐廳</h2>
-    <div class="image-container">
-        <img src="/static/img/facilities/living1.jpg" alt="A room with chairs and tables" width="600" height="450">
-    </div>
-    <br>
-    <h2>4. 房間</h2>
+        <div style="margin: 2rem 0;">
+            <h2 style="color: #000; margin-bottom: 1rem;">1. 花園</h2>
+            <img src="/static/img/facilities/park.jpg" alt="A group of people watering plants" style="width: 100%; max-width: 600px; height: auto; border-radius: 1rem;">
+        </div>
 
-    <div class="image-container">
-        <img src="/static/img/facilities/room.jpg" alt="A room with two beds and a chair" width="600" height="450">
-        <br>
-        <br>
-        <img src="/static/img/facilities/room1.jpg" alt="A group of men in white lab coats" width="600" height="450">
-    </div>
+        <div style="margin: 2rem 0;">
+            <h2 style="color: #000; margin-bottom: 1rem;">2. 優閑區</h2>
+            <img src="/static/img/facilities/living.jpg" alt="A room with a reception desk and tables" style="width: 100%; max-width: 600px; height: auto; border-radius: 1rem;">
+        </div>
 
+        <div style="margin: 2rem 0;">
+            <h2 style="color: #000; margin-bottom: 1rem;">3. 餐廳</h2>
+            <img src="/static/img/facilities/living1.jpg" alt="A room with chairs and tables" style="width: 100%; max-width: 600px; height: auto; border-radius: 1rem;">
+        </div>
+
+        <div style="margin: 2rem 0;">
+            <h2 style="color: #000; margin-bottom: 1rem;">4. 房間</h2>
+            <img src="/static/img/facilities/room.jpg" alt="A room with two beds and a chair" style="width: 100%; max-width: 600px; height: auto; border-radius: 1rem; margin-bottom: 1rem;">
+            <img src="/static/img/facilities/room1.jpg" alt="A group of men in white lab coats" style="width: 100%; max-width: 600px; height: auto; border-radius: 1rem;">
+        </div>
+    </section>
 </div>
 
 {% endblock %}

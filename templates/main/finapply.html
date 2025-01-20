@@ -4,14 +4,22 @@
 {% block content %}
 
 <div class="container">
-    <section class="section mx-auto" style="max-width: 800px; background: #fff; padding: 2rem; margin-bottom: 1rem; border-radius: 2rem;">
+    <section class="section mx-auto" style="max-width: 800px; background: #fff; padding: 2rem; margin-bottom: 1rem; border-radius: 2rem; margin-top: 1rem;">
         <h2 style="color: #000; margin-bottom: 1.5rem;">
             <i class="fas fa-hand-holding-usd" style="color: #30caa0; margin-right: 0.5rem;"></i>
             資助申請流程
         </h2>
         
         <div class="table-responsive">
-            <table style="border: 1px solid #ddd; border-collapse: separate; border-left: 0; border-radius: 1rem; border-spacing: 0px; width: 100%; overflow: hidden;">
+            <table style="
+                --border: 1px solid #ddd;
+                border-radius: 1rem;
+                border-spacing: 0;
+                border-collapse: separate;
+                border: var(--border);
+                overflow: hidden;
+                width: 100%;
+            ">
                 <thead style="background-color: #30caa0; color: white;">
                     <tr>
                         <th style="padding: 12px; border-left: 1px solid #30caa0;">步驟</th>
@@ -20,20 +28,20 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td style="padding: 12px; border-top: 1px solid #ddd; border-left: 1px solid #ddd;">1. 初步評估</td>
-                        <td style="padding: 12px; border-top: 1px solid #ddd; border-left: 1px solid #ddd;">由社工評估長者嘅護理需要同經濟狀況</td>
+                        <td style="padding: 12px; border-top: var(--border); border-left: var(--border);">1. 初步評估</td>
+                        <td style="padding: 12px; border-top: var(--border); border-left: var(--border);">由社工評估長者嘅護理需要同經濟狀況</td>
                     </tr>
                     <tr>
-                        <td style="padding: 12px; border-top: 1px solid #ddd; border-left: 1px solid #ddd;">2. 提交申請</td>
-                        <td style="padding: 12px; border-top: 1px solid #ddd; border-left: 1px solid #ddd;">填寫申請表格並提交所需文件</td>
+                        <td style="padding: 12px; border-top: var(--border); border-left: var(--border);">2. 提交申請</td>
+                        <td style="padding: 12px; border-top: var(--border); border-left: var(--border);">填寫申請表格並提交所需文件</td>
                     </tr>
                     <tr>
-                        <td style="padding: 12px; border-top: 1px solid #ddd; border-left: 1px solid #ddd;">3. 審批過程</td>
-                        <td style="padding: 12px; border-top: 1px solid #ddd; border-left: 1px solid #ddd;">社會福利署審核申請，通常需時4-6週</td>
+                        <td style="padding: 12px; border-top: var(--border); border-left: var(--border);">3. 審批過程</td>
+                        <td style="padding: 12px; border-top: var(--border); border-left: var(--border);">社會福利署審核申請，通常需時4-6週</td>
                     </tr>
                     <tr>
-                        <td style="padding: 12px; border-top: 1px solid #ddd; border-left: 1px solid #ddd; border-bottom-left-radius: 1rem;">4. 結果通知</td>
-                        <td style="padding: 12px; border-top: 1px solid #ddd; border-left: 1px solid #ddd; border-bottom-right-radius: 1rem;">申請結果會以書面形式通知申請人</td>
+                        <td style="padding: 12px; border-top: var(--border); border-left: var(--border);">4. 結果通知</td>
+                        <td style="padding: 12px; border-top: var(--border); border-left: var(--border);">申請結果會以書面形式通知申請人</td>
                     </tr>
                 </tbody>
             </table>
