@@ -145,24 +145,24 @@ td {
 
 /* Floating Button Styles */
 .floating-btn {
-    position: fixed; /* Fixes the button in place */
-    right: 20px;     /* Distance from the right edge of the viewport */
-    top: 80%;        /* Center vertically */
-    transform: translateY(-50%); /* Adjusts the position to truly center it */
-    background-color: #30caa0; /* Optional: Set a background color */
-    color: #fff; /* Optional: Set text color */
-    padding: 10px 15px; /* Optional: Add some padding */
-    border-radius: 5px; /* Optional: Round the corners */
-    text-decoration: none; /* Remove underline from link */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
-    z-index: 1000; /* Ensure it appears above other elements */
-    animation: blink 1s infinite; /* Apply the blinking animation */
+  position: fixed;
+  right: 20px;
+  top: 80%;
+  transform: translateY(-50%);
+  background-color: #30caa0;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none !important; /* 加強設定 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: blink 1s infinite;
 }
-
 
 .floating-btn:hover {
   animation: none;
   background-color: #30caa0;
+  text-decoration: none !important; /* 確保 hover 時都冇底線 */
 }
 
 
