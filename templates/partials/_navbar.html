@@ -1,7 +1,7 @@
 {% load static %}
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-secondary sticky-top">
-    <div class="container">
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary sticky-top" >
+    <div class="container" style='margin: auto; '>
         
         <a class="navbar-brand" href="{% url 'index' %}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" 
@@ -9,8 +9,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <ul class="navbar-nav ml-auto">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup" >
+            <ul class="navbar-nav" >
                 <!-- 主頁 -->
                 <li class="nav-item {% if request.path == '/' %}active highlight{% endif %}" style="transition: all 0.3s ease;">
                     <a class="nav-link" href="{% url 'index' %}" aria-label="主頁" aria-current="{% if request.path == '/' %}page{% else %}false{% endif %}" style="color: inherit; text-decoration: none;">

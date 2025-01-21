@@ -1,3 +1,18 @@
+/* 加大所有頁面文字 */
+body {
+  font-size: 1.2rem;  /* 加大 20% */
+}
+
+/* 加大標題 */
+h2 {
+  font-size: 2.4rem;  /* 加大 20% */
+}
+
+/* 加大表格內容 */
+td {
+  font-size: 1.2rem;  /* 加大 20% */
+}
+
 .custom-navbar {
     background-color: #30caa0 !important;  
     color: #d11654 !important; /* This will apply to the navbar itself */
@@ -151,28 +166,7 @@
 }
 
 
-/* FAQ Section Styling *//* FAQ Section Styling */
-.faq {
-  margin-bottom: 20px;
-  padding: 15px;
-  border-radius: 8px;
-  background-color: #f8f9fa;
-  transition: all 0.3s ease;
-}
 
-.faq h2 {
-  font-size: 0.95rem !important;
-  color: #b99930;
-  margin-bottom: 10px;
-  font-weight: 600;
-}
-
-.faq p {
-  font-size: 0.85rem !important;
-  color: #666666;
-  line-height: 1.6;
-  margin-bottom: 0;
-}
  
 .alert {
   background-color: #ca8c30; /* Custom background color */
@@ -183,6 +177,28 @@
 /* Optional: Change the close button color */
 .alert .close {
   color: white; /* Close button color */
+}
+
+
+.fade {
+  opacity: 0; /* Fade out */
+}
+
+/* 聯絡我們按鈕特別樣式 */
+.nav-item[style*="background-color: #86236e"] {
+  background-color: #86236e !important;
+}
+
+.nav-item[style*="background-color: #86236e"] .nav-link {
+  color: white !important;
+}
+
+.nav-item[style*="background-color: #86236e"]:hover {
+  background-color: #FFFF00 !important;
+}
+
+.nav-item[style*="background-color: #86236e"]:hover .nav-link {
+  color: black !important;
 }
 
 /* 新增 hover 效果 */
@@ -250,46 +266,4 @@
 .navbar .dropdown-toggle::after {
     vertical-align: 0.15em !important;
     margin-left: 0.5em !important;
-}
-
-/* 新增全局樣式 */
-.main-container {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: #fff;
-  border-radius: 2rem;
-}
-
-.main-container h2 {
-  color: #000;
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-}
-
-.main-container p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #000;
-}
-
-.main-container ul {
-  list-style: none;
-  padding-left: 1rem;
-}
-
-.main-container li {
-  padding: 0.5rem 0;
-}
-
-.main-container span {
-  display: inline-block;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 0.25rem;
-  color: #000;
-}
-
-.main-container i {
-  color: #30caa0;
-  margin-right: 0.5rem;
 }
